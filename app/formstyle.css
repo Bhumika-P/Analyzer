@@ -1,0 +1,26 @@
+
+h3,h1{
+    text-align: center;
+}
+table{
+    align-content: center
+}
+.form-row , .form-control , label{
+    margin-left: 50%;
+    
+}
+table{
+    margin-left:30%;
+    margin-right:30%;
+    width: 40%;
+}
+tr,td,thead,tbody{
+    width:20%;
+}
+input[type=textbox]{
+    width: 100%;
+}
+img{
+    height:20%;
+    width:20%
+}
