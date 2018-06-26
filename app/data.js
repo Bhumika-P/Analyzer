@@ -51,7 +51,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
         //document.getElementById("test").innerHTML = pagesText[1].length;
         for(i = 0; i <pagesText.length;i++){
             var s = pagesText[i].replace(/ /g,'');
-            
+            //console.log(i);
             var s1p1 = s.indexOf("Checkanythatyouharbororareexperiencingforyourselfortowardsothersatthistime."); // Section 1- part 1
             var s1p2 = s.indexOf("Checkwhatcurrentlyappliestoyou"); // Section 1 - part 2
             var p1 = s.substring(s1p1 , s1p2);
@@ -132,7 +132,148 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                 }
                 console.log("Section 1 - part 5" , countp5);
             }   
-            //console.log(i, s1p5 , s1p3, p3p4);
+
+            //Section 1- Part 6
+
+            var s1p7 = s.indexOf("Checkwhichcurrentlyapplies");
+            var p6 = s.substring(s1p7 , s1p8);
+            //console.log(p6);
+            if(p6.length > 0  && p6.indexOf("Pizza") <0){
+                var countp6 = 0;
+                var array_p6 = ["Exercise regularly at least twice a week", "Fatigue","Weight gain", "Weakness", "Muscle atrophy",
+                                "Depression", "Lack of flexibility and good balance",  "Heart problems" ];
+                for(j=0; j< array_p6.length; j++){
+                    if(p6.indexOf(array_p6[j].replace(/ /g,'')) >= 0){
+                        countp6++;
+                        }
+                }
+                console.log("Section 1 - part 6" , countp6);
+            }
+
+            //Section 1 - Part 7
+            var s1p8 = s.indexOf("Checkwhatappliestoyoupresently");
+            var p7 = s.substring(s1p7,s1p8);
+            //console.log(p7);
+            if(p7.length > 0  && p7.indexOf("Pizza") <0){
+                var countp7 = 0;
+                var array_p7 = ["Painful or hard bowel movements", "Constipated, less than 1 bowel movement a day", "Varicose veins",
+                                "Hemorrhoids or rectal fissures", "Use lots of toilet paper to clean yourself",
+                                "Stools are pencil size and drop to the bottom of the toilet"  ];
+                for(j=0; j< array_p7.length; j++){
+                    if(p7.indexOf(array_p7[j].replace(/ /g,'')) >= 0){
+                        countp7++;
+                    }
+                }
+                console.log("Section 1 - part 7" , countp7);
+            }
+
+            //Section 1 - Part 8
+            var s1p9 = s.indexOf("FriedFoods");
+            var p8 = s.substring(s1p8,s1p9);
+            //console.log(p8);
+            if(p8.length > 0  && p8.indexOf("Pizza") <0){
+                var countp8 = 0;
+                var array_p8 =["Consume six types of vegetables daily", "Eat at least two types of fruit daily", "Consume at least an ounce of raw nuts daily",
+                                "50% of my diet is made up of raw foods", "I do not consume dairy, wheat or gluten containing foods",
+                                "I consume very little dairy or gluten (2 to 3 meals a week)", "Eat fresh and/or organic foods as much as possible",
+                                "Vegetarian", "Vegan", "Eat white fish two to three times a week" ];
+                for(j=0; j< array_p8.length; j++){
+                    if(p8.indexOf(array_p8[j].replace(/ /g,'')) >= 0){
+                        countp8++;
+                    }
+                }
+                console.log("Section 1 - part 8" , countp8);
+            }
+
+            var biotin = s.indexOf("Biotin");
+            //console.log(biotin);
+            var cal = s.indexOf("Calcium");
+            var chrom = s.indexOf("Chromium");
+            var copper = s.indexOf("Copper");
+            var fatty = s.indexOf("EssentialFattyAcids");
+            var protein = s.indexOf("Protein");
+            var carb = s.indexOf("Carbohydrates");
+            var folic = s.indexOf("FolicAcid");
+            var iodine = s.indexOf("Iodine");
+            var iron = s.indexOf("Iron");
+            var mag = s.indexOf("Magnesium");
+            var nia = s.indexOf("Niacin");
+            var acid = s.indexOf("PantothenicAcid(B5)");
+            var pot = s.indexOf("Potassium");
+            var pyr = s.indexOf("Pyridoxine(B6)");
+            var ribo = s.indexOf("Riboflavin");
+            var sel = s.indexOf("Selenium");
+            var thia = s.indexOf("Thiamin");
+            var vita = s.indexOf("VitaminA");
+            var vitb12 = s.indexOf("VitaminB-12");
+            var vitc = s.indexOf("VitaminC");
+            var coq = s.indexOf("CoQ10");
+            var vitd = s.indexOf("VitaminD");
+            var vite = s.indexOf("VitaminE");
+            var vitk = s.indexOf("VitaminK");
+            var zinc = s.indexOf("Zinc");
+
+            var all = ["Biotin" , "Calcium" , "Chromium" , "Copper", "Essential Fatty Acids",
+                        "Protein", "Carbohydrates", "Folic Acid", "Iodine" , "Iron" , "Magnesium","Manganese",
+                        "Niacin", "PantothenicAcid(B5)" ,"Potassium", "Pyridoxine(B6)", "Riboflavin",
+                        "Selenium","Thiamin", "VitaminA", "VitaminB-12",  "VitaminC", "CoQ10",
+                        "VitaminD","VitaminE", "VitaminK","Zinc"] ;
+
+            var a_biotin =["Dermatitis", "Eye inflammation", "Hair loss", 
+                            "Loss of muscle control", "Insomnia", "Muscle weakness"];
+            var a_cal = ["Brittle nails", "cramps", "delusions", "depression", "insomnia", "irritability", 
+                        "osteoporosis", "palpitations", "periodontal disease", "rickets", "tooth decay"];
+            var a_chrom = ["Anxiety", "fatigue", "glucose intolerance", "adult-onset diabetes"];
+            var a_copper = ["Anemia", "arterial damage", "depression", "diarrhea", "fatigue", "fragile bones", 
+                            "hair loss", "hyperthyroidism", "weakness"];
+            var a_fatty = ["Diarrhea", "dry skin and hair", "hair loss", "immune impairment", "infertility", 
+                            "poor wound healing", "premenstrual syndrome", "acne", "eczema", "gall stones", "liver degeneration", 
+                            "headaches when out in the hot sun", "sunburn easily or suffer sun poisoning"];
+            var a_protein = ["Increased secretion from mouth/nose/eyes", "Swelling in hands and feet", "muscle cramps", 
+                            "Menstrual cramps", "low exercise tolerance", "cold hands and feet", "bleeding gums", "low immunity", 
+                            "fatigue", "muscles more flabby than normal", "hair loss", "splitting hair and nails", "low heart rate", "hypoglycemia"];
+            var a_carbs = [	"Decreased secretions from mouth/nose/eyes", "Muscle weakness", "inability to concentrate", 
+                            "easily startled", "difficulty swallowing", "voice affected by stress"];
+            var a_folic = ["Anemia", "apathy", "diarrhea", "fatigue", "headaches", "insomnia", "loss of appetite", "neural tube defects in fetus", 
+                            "paranoia", "shortness of breath", "weakness"];
+            var a_ion= ["Cretinism", "fatigue", "hypothyroidism", "weight gain"];
+            var a_iron = ["Anemia", "brittle nails", "confusion", "constipation", "depression", "dizziness", "fatigue", "headaches", "inflamed tongue", "mouth lesions"];
+            var a_mag = ["Anxiety", "confusion", "heart attack", "hyperactivity", "insomnia", "nervousness", "muscular irritability", "restlessness", "weakness", "hypertension"]; 
+            var a_man = ["Atherosclerosis", "dizziness"," elevated cholesterol", "glucose intolerance", "hearing loss", "loss of muscle control, ringing in ears"];
+            var a_nia = ["Bad breath", "canker sores", "confusion", "depression", "dermatitis", "diarrhea", "emotional instability", "fatigue", "irritability", "loss of appetite", "memory impairment", 
+                        "muscle weakness", "nausea", "skin eruptions and inflammation", "high cholesterol or triglycerides", "poor circulation"];
+            var a_Acid = ["Abdominal pains", "burning feet", "depression", "eczema", "fatigue", "hair loss", "immune impairment", "insomnia", "irritability", "low blood pressure", "muscle spasms", 
+                        "nausea", "poor coordination"];
+            var a_pot = ["Acne", "constipation", "depression", "edema", "excessive water consumption", "fatigue", "glucose intolerance", "high cholesterol levels", "insomnia", "mental impairment", 
+                        "muscle weakness", "nervousness", "poor reflexes"];
+            var a_pyr = ["Acne", "anemia", "arthritis", "eye inflammation", "depression", "dizziness", "facial oiliness", "fatigue", "impaired wound healing", "irritability", "loss of appetite", 
+                        "loss of hair", "mouth lesions", "nausea"];
+            var a_ribo = ["Blurred vision", "cataracts", "depression", "dermatitis", "dizziness", "hair loss", "inflamed eyes","mouth lesions", "nervousness", "neurological symptoms (numbness, loss of sensation, \"electric shock\" sensations)", 
+                          "seizures", "sensitivity to light", "sleepiness", "weakness"];
+            var array_positive =[];
+            for(k=0; k<all.length;k++){
+                //console.log(s.indexOf(all[i]));
+                if(s.indexOf(all[k]) >= 0 ){
+                    //console.log("In");
+                    array_positive.push(all[k].replace(/ /g,''));
+                }
+            }
+
+            if(array_positive.length > 0){
+                for(n = 0; n<array_positive.length ; n++){
+                    if(n < (array_positive.length - 1)){
+                          var temp = s.substring(array_positive[i] , array_positive[i+1]); 
+                    }else{ //last member of array
+                                 
+                    }
+
+                    if(array_positive[i] == "Biotin"){
+                    }
+                    
+                }
+            }
+            console.log(array_positive);            
+
         }
     });
 
