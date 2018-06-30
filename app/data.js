@@ -51,6 +51,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
         //document.getElementById("test").innerHTML = pagesText[1].length;
         for(i = 0; i <pagesText.length;i++){
             var s = pagesText[i].replace(/ /g,'');
+            //console.log(s);
             //console.log(i);
             var s1p1 = s.indexOf("Checkanythatyouharbororareexperiencingforyourselfortowardsothersatthistime."); // Section 1- part 1
             var s1p2 = s.indexOf("Checkwhatcurrentlyappliestoyou"); // Section 1 - part 2
@@ -185,72 +186,88 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                 console.log("Section 1 - part 8" , countp8);
             }
 
-            var biotin = s.indexOf("Biotin");
-            //console.log(biotin);
-            var cal = s.indexOf("Calcium");
-            var chrom = s.indexOf("Chromium");
-            var copper = s.indexOf("Copper");
-            var fatty = s.indexOf("EssentialFattyAcids");
-            var protein = s.indexOf("Protein");
-            var carb = s.indexOf("Carbohydrates");
-            var folic = s.indexOf("FolicAcid");
-            var iodine = s.indexOf("Iodine");
-            var iron = s.indexOf("Iron");
-            var mag = s.indexOf("Magnesium");
-            var nia = s.indexOf("Niacin");
-            var acid = s.indexOf("PantothenicAcid(B5)");
-            var pot = s.indexOf("Potassium");
-            var pyr = s.indexOf("Pyridoxine(B6)");
-            var ribo = s.indexOf("Riboflavin");
-            var sel = s.indexOf("Selenium");
-            var thia = s.indexOf("Thiamin");
-            var vita = s.indexOf("VitaminA");
-            var vitb12 = s.indexOf("VitaminB-12");
-            var vitc = s.indexOf("VitaminC");
-            var coq = s.indexOf("CoQ10");
-            var vitd = s.indexOf("VitaminD");
-            var vite = s.indexOf("VitaminE");
-            var vitk = s.indexOf("VitaminK");
-            var zinc = s.indexOf("Zinc");
-
-            var all = ["Biotin" , "Calcium" , "Chromium" , "Copper", "Essential Fatty Acids",
-                        "Protein", "Carbohydrates", "Folic Acid", "Iodine" , "Iron" , "Magnesium","Manganese",
-                        "Niacin", "PantothenicAcid(B5)" ,"Potassium", "Pyridoxine(B6)", "Riboflavin",
+            //Array of all elements
+            var all = ["Biotin" , "Calcium" , "Chromium" , "Copper", "EssentialFattyAcids",
+                        "Protein", "Carbohydrates", "FolicAcid", "Iodine" , "Iron" , "Magnesium","Manganese",
+                        "Niacin", "PantothenicAcid(B6)" ,"Potassium", "Pyridoxine(B6)", "Riboflavin",
                         "Selenium","Thiamin", "VitaminA", "VitaminB-12",  "VitaminC", "CoQ10",
                         "VitaminD","VitaminE", "VitaminK","Zinc"] ;
-
-            var a_biotin =["Dermatitis", "Eye inflammation", "Hair loss", 
-                            "Loss of muscle control", "Insomnia", "Muscle weakness"];
-            var a_cal = ["Brittle nails", "cramps", "delusions", "depression", "insomnia", "irritability", 
-                        "osteoporosis", "palpitations", "periodontal disease", "rickets", "tooth decay"];
-            var a_chrom = ["Anxiety", "fatigue", "glucose intolerance", "adult-onset diabetes"];
-            var a_copper = ["Anemia", "arterial damage", "depression", "diarrhea", "fatigue", "fragile bones", 
-                            "hair loss", "hyperthyroidism", "weakness"];
-            var a_fatty = ["Diarrhea", "dry skin and hair", "hair loss", "immune impairment", "infertility", 
-                            "poor wound healing", "premenstrual syndrome", "acne", "eczema", "gall stones", "liver degeneration", 
-                            "headaches when out in the hot sun", "sunburn easily or suffer sun poisoning"];
+            //Array of all the sympots
+            var a_biotin =["Dermatitis", "Eye inflammation", "Hair loss", "Loss of muscle control", "Insomnia", "Muscle weakness"];
+            var a_cal = ["Brittle nails", "Cramps", "Delusions", "Depression", "Insomnia", "Irritability", 
+                        "Osteoporosis", "Palpitations", "Periodontal disease", "Rickets", "Tooth decay"];
+            var a_chrom = ["Anxiety", "Fatigue", "Glucose intolerance", "Adult-onset diabetes"];
+            var a_copper = ["Anemia", "Arterial damage", "Depression", "Diarrhea", "Fatigue", "Fragile bones", "Hair Loss", "Hyperthyroidism", "Weakness"];
+            var a_fatty = ["Diarrhea", "Dry Skin & Hair loss","Hair Loss", "Immune Impairment", "Infertility", 
+                            "Poor Wound Healing", "Premenstrual Syndrome", "Acne", "Eczema", "Gall Stones", "Liver Degeneration", 
+                            "Headaches when out in the hot sun", "Sunburn easily or suffer sun poisoning"];
             var a_protein = ["Increased secretion from mouth/nose/eyes", "Swelling in hands and feet", "muscle cramps", 
                             "Menstrual cramps", "low exercise tolerance", "cold hands and feet", "bleeding gums", "low immunity", 
                             "fatigue", "muscles more flabby than normal", "hair loss", "splitting hair and nails", "low heart rate", "hypoglycemia"];
-            var a_carbs = [	"Decreased secretions from mouth/nose/eyes", "Muscle weakness", "inability to concentrate", 
-                            "easily startled", "difficulty swallowing", "voice affected by stress"];
-            var a_folic = ["Anemia", "apathy", "diarrhea", "fatigue", "headaches", "insomnia", "loss of appetite", "neural tube defects in fetus", 
-                            "paranoia", "shortness of breath", "weakness"];
-            var a_ion= ["Cretinism", "fatigue", "hypothyroidism", "weight gain"];
-            var a_iron = ["Anemia", "brittle nails", "confusion", "constipation", "depression", "dizziness", "fatigue", "headaches", "inflamed tongue", "mouth lesions"];
-            var a_mag = ["Anxiety", "confusion", "heart attack", "hyperactivity", "insomnia", "nervousness", "muscular irritability", "restlessness", "weakness", "hypertension"]; 
-            var a_man = ["Atherosclerosis", "dizziness"," elevated cholesterol", "glucose intolerance", "hearing loss", "loss of muscle control, ringing in ears"];
-            var a_nia = ["Bad breath", "canker sores", "confusion", "depression", "dermatitis", "diarrhea", "emotional instability", "fatigue", "irritability", "loss of appetite", "memory impairment", 
-                        "muscle weakness", "nausea", "skin eruptions and inflammation", "high cholesterol or triglycerides", "poor circulation"];
-            var a_Acid = ["Abdominal pains", "burning feet", "depression", "eczema", "fatigue", "hair loss", "immune impairment", "insomnia", "irritability", "low blood pressure", "muscle spasms", 
-                        "nausea", "poor coordination"];
-            var a_pot = ["Acne", "constipation", "depression", "edema", "excessive water consumption", "fatigue", "glucose intolerance", "high cholesterol levels", "insomnia", "mental impairment", 
-                        "muscle weakness", "nervousness", "poor reflexes"];
-            var a_pyr = ["Acne", "anemia", "arthritis", "eye inflammation", "depression", "dizziness", "facial oiliness", "fatigue", "impaired wound healing", "irritability", "loss of appetite", 
-                        "loss of hair", "mouth lesions", "nausea"];
-            var a_ribo = ["Blurred vision", "cataracts", "depression", "dermatitis", "dizziness", "hair loss", "inflamed eyes","mouth lesions", "nervousness", "neurological symptoms (numbness, loss of sensation, \"electric shock\" sensations)", 
-                          "seizures", "sensitivity to light", "sleepiness", "weakness"];
+            var a_carbs = [	"Decreased secretions from mouth/nose/eyes", "Muscle weakness", "Inability to concentrate", 
+                            "Easily startled", "Difficulty swallowing", "Voice affected by stress"];
+            var a_folic = ["Anemia", "Apathy", "Diarrhea", "Fatigue", "Headaches", "Insomnia", "Loss of Appetite", "Neural Tube Defects in Fetus", 
+                            "Paranoia", "Shortness of Breath", "Weakness"];
+            var a_ion= ["Cretinism", "Fatigue", "Hypothyroidism", "Weight Gain"];
+            var a_iron = ["Anemia", "Brittle nails", "Confusion", "Constipation", "Depression", "Dizziness", "Fatigue", "Headaches", "Inflamed tongue", "Mouth lesions"];
+            var a_mag = ["Anxiety", "Confusion", "Heart attack", "Hyperactivity", "Insomnia", "Nervousness", "Muscular irritability", "Restlessness", "Weakness", "Hypertension"]; 
+            var a_man = ["Atherosclerosis", "Dizziness"," Elevated cholesterol", "Glucose intolerance", "Hearing loss", "Loss of muscle control, Ringing in ears"];
+            var a_nia = ["Bad breath", "Canker sores", "Confusion", "Depression", "Dermatitis", "Diarrhea", "Emotional Instability", "Fatigue", "Irritability", "Loss of Appetite", "Memory Impairment", 
+                        "Muscle Weakness", "Nausea", "Skin eruptions and Inflammation", "High cholesterol or triglycerides", "Poor circulation"];
+            var a_acid = ["Abdominal Pains", "Burning Feet", "Depression", "Eczema", "Fatigue", "Hair Loss", "Immune Impairment", "Insomnia", "Irritability", "Low Blood Pressure", "Muscle Spasms", 
+                        "Nausea", "Poor Coordination"];
+            var a_pot = ["Acne", "Constipation", "Depression", "Edema", "Excessive Water Consumption", "Fatigue", "Glucose Intolerance", "High Cholesterol Levels", "Insomnia", "Mental Impairment", 
+                        "Muscle Weakness", "Nervousness", "Poor Reflexes"];
+            var a_pyr = ["Acne", "Anemia", "Arthritis", "Eye Inflammation", "Depression", "Dizziness", "Facial Oiliness", "Fatigue", "Impaired Wound Healing", "Irritability", "Loss of Appetite", 
+                        "Loss of Hair", "Mouth Lesions", "Nausea"];
+            var a_ribo = ["Blurred Vision", "Cataracts", "Depression", "Dermatitis", "Dizziness", "Hair Loss", "Inflamed Eyes","Mouth Lesions", "Nervousness", 
+                         "Neurological Symptoms (Numbness, Loss Of Sensation, \"Electric Shock\" Sensations)", "Seizures", "Sensitivity to Light", "Sleepiness", "Weakness"];
+            var a_sel = ["Growth Impairment", "High Cholesterol Levels", "Increased Incidence of Cancer", "Pancreatic Insufficiency (Inability to secrete adequate amounts of digestive enzymes)", 
+                        "Immune Impairment", "Liver Impairment", "Male Sterility"];
+            var a_thia = ["Confusion", "Constipation", "Digestive Problems", "Irritability", "Loss of Appetite", "Memory Loss", "Nervousness", "Numbness of Hands & Feet", "Pain Sensitivity", 
+                        "Poor Coordination", "Weakness", "Slow Heart Beat or Rapid Heartbeat", "Enlarged Heart", "Heart Palpitations"];
+            var a_vita  = ["Acne", "Dry Hair", "Fatigue", "Growth Impairment", "Insomnia", "Hyperkeratosis (Thickening & roughness of skin)", "Immune Impairment", "Night Blindness", "Weight Loss"];
+            var a_vitb12 = ["Anemia", "Constipation", "Depression", "Dizziness", "Fatigue", "Intestinal Disturbances", "Headaches", "Irritability", "Loss of Vibration Sensation", "Low Stomach Acid", "Mental Disturbances", 
+                            "Moodiness", "Mouth Lesions", "Numbness", "Spinal Cord Degeneration"];
+            var a_vitc = ["Bleeding Gums", "Depression", "Easy Bruising", "Impaired Wound Healing", "Irritability", "Joint Pains", "Loose Teeth", "Malaise", "Tiredness"];
+            var a_coq = ["Ataxia", "Cardiomyopathy", "Cerebellar Atrophy", "Muscle Weakness", "Fatigue", "Seizures", "Kidney Failure", "Encephalopathy", "Learning Disabilities", "Myoglobinuria", "Sensorineural Deafness", "Scoliosis", "Lactic Acidemia", 
+                        "Spasticity", "Hyper-Reflexes", "Weakened Eye muscles", "Atrophying of Muscle Tissue", "Gum Disease"];
+            var a_vitd=["Burning Sensation in Mouth", "Diarrhea", "Insomnia", "Myopia", "Nervousness", "Osteomalacia", "Osteoporosis", "Rickets", "Scalp Sweating", "Poor Immunity"];
+            var a_vite = ["Gait Disturbances", "Poor Reflexes", "Loss of Position Sense", "Loss of Vibration Sense", "Shortened Red Blood Cell Life"];
+            var a_vitk = ["Bleeding Disorders", "Arteriolosclerosis", "Spurs", "Calcium Deposits"];
+            var a_zinc = ["Acne", "Amnesia", "Apathy", "Brittle Nails", "Delayed Sexual Maturity", "Depression", "Diarrhea", "Eczema", "Fatigue","Growth Impairment", "Hair Loss", "High Cholesterol Levels", "Immune Impairment", "Impotence", "Irritability", "Lethargy", 
+                         "Loss of Appetite", "Loss of Sense of Taste", "Low Stomach Acid", "Male Infertility", "Memory Impairment", "Night Blindness", "Paranoia", "White Spots on Nails", "Wound Healing Impairment", "Low Testosterone"];
             var array_positive =[];
+
+            //Counters
+            var c_biotin = 0;
+            var c_cal = 0;
+            var c_chrom = 0;
+            var c_copper = 0;
+            var c_fatty = 0;
+            var c_protein = 0;
+            var c_carbs = 0;
+            var c_folic = 0;
+            var c_ion = 0;
+            var c_iron = 0;
+            var c_mag = 0;
+            var c_man = 0;
+            var c_nia = 0;
+            var c_acid = 0;
+            var c_pot = 0;
+            var c_pyr = 0;
+            var c_ribo = 0;
+            var c_Sel = 0;
+            var c_thia = 0;
+            var c_vita=0;
+            var c_vitb12 = 0;
+            var c_vitc=0;
+            var c_coq = 0;
+            var c_vitd = 0;
+            var c_vite = 0;
+            var c_vitk=0;
+            var c_zinc = 0;
+
             for(k=0; k<all.length;k++){
                 //console.log(s.indexOf(all[i]));
                 if(s.indexOf(all[k]) >= 0 ){
@@ -258,22 +275,232 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                     array_positive.push(all[k].replace(/ /g,''));
                 }
             }
-
+           // console.log(array_positive);
             if(array_positive.length > 0){
                 for(n = 0; n<array_positive.length ; n++){
-                    if(n < (array_positive.length - 1)){
-                          var temp = s.substring(array_positive[i] , array_positive[i+1]); 
-                    }else{ //last member of array
-                                 
-                    }
-
-                    if(array_positive[i] == "Biotin"){
-                    }
                     
-                }
-            }
-            console.log(array_positive);            
+                    if(n < (array_positive.length - 1)){
+                          var index1 = s.indexOf(array_positive[n]);
+                          var index2 = s.indexOf(array_positive[n+1]);
+                          var temp = s.substring(index1 , index2); 
+                          //console.log(temp);
+                    }else{ //last member of array
+                          console.log(array_positive[n]);
+                          var index1 = s.indexOf(array_positive[n]);
+                          var index2 = s.indexOf("I."); //Fix this to number when you can 
+                          //console.log(pagesText[i].length);
+                          if(index2 <0){
+                            var temp = s.substring(index1 , pagesText[i].length);
+                          }else{
+                            var temp = s.substring(index1 , index2);
+                          }
+                    }
 
+                    if(array_positive[n].localeCompare("Biotin") == 0){
+                        for(j=0; j< a_biotin.length; j++){
+                            if(temp.indexOf(a_biotin[j].replace(/ /g,'')) >= 0){
+                                c_biotin++;
+                            }
+                        }                     
+                    }else if(array_positive[n].localeCompare("Calcium") == 0){
+                        for(j=0; j< a_cal.length; j++){
+                            if(temp.indexOf(a_cal[j].replace(/ /g,'')) >= 0){
+                                c_cal++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Chromium") == 0){
+                        for(j=0; j< a_chrom.length; j++){
+                            if(temp.indexOf(a_chrom[j].replace(/ /g,'')) >= 0){
+                                c_chrom++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Copper") == 0){
+                        for(j=0; j< a_copper.length; j++){
+                            if(temp.indexOf(a_copper[j].replace(/ /g,'')) >= 0){
+                                c_copper++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("EssentialFattyAcids") == 0){
+                        for(j=0; j< a_fatty.length; j++){
+                            if(temp.indexOf(a_fatty[j].replace(/ /g,'')) >= 0){
+                                c_fatty++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Protein") == 0){
+                        for(j=0; j< a_protein.length; j++){
+                            if(temp.indexOf(a_protein[j].replace(/ /g,'')) >= 0){
+                                c_protein++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Carbohydrates") == 0){
+                        for(j=0; j< a_carbs.length; j++){
+                            if(temp.indexOf(a_carbs[j].replace(/ /g,'')) >= 0){
+                                c_carbs++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("FolicAcid") == 0){
+                        for(j=0; j< a_folic.length; j++){
+                            if(temp.indexOf(a_folic[j].replace(/ /g,'')) >= 0){
+                                c_folic++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Iodine") == 0){
+                        for(j=0; j< a_ion.length; j++){
+                            if(temp.indexOf(a_ion[j].replace(/ /g,'')) >= 0){
+                                c_ion++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Iron") == 0){
+                        for(j=0; j< a_iron.length; j++){
+                            if(temp.indexOf(a_iron[j].replace(/ /g,'')) >= 0){
+                                c_iron++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Magnesium") == 0){
+                        for(j=0; j< a_mag.length; j++){
+                            if(temp.indexOf(a_mag[j].replace(/ /g,'')) >= 0){
+                                c_mag++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Manganese") == 0){
+                        for(j=0; j< a_man.length; j++){
+                            if(temp.indexOf(a_man[j].replace(/ /g,'')) >= 0){
+                                c_man++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Niacin") == 0){
+                        for(j=0; j< a_nia.length; j++){
+                            if(temp.indexOf(a_nia[j].replace(/ /g,'')) >= 0){
+                                c_nia++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("PantothenicAcid(B6)") == 0){
+                        for(j=0; j< a_acid.length; j++){
+                            if(temp.indexOf(a_acid[j].replace(/ /g,'')) >= 0){
+                                c_acid++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Potassium") == 0){
+                        for(j=0; j< a_pot.length; j++){
+                            if(temp.indexOf(a_pot[j].replace(/ /g,'')) >= 0){
+                                c_pot++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Pyridoxine(B6)") == 0){
+                        for(j=0; j< a_pyr.length; j++){
+                            if(temp.indexOf(a_pyr[j].replace(/ /g,'')) >= 0){
+                                c_pyr++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Riboflavin") == 0){
+                        for(j=0; j< a_ribo.length; j++){
+                            if(temp.indexOf(a_ribo[j].replace(/ /g,'')) >= 0){
+                                c_ribo++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Selenium") == 0){
+                        for(j=0; j< a_sel.length; j++){
+                            if(temp.indexOf(a_sel[j].replace(/ /g,'')) >= 0){
+                                c_Sel++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Selenium") == 0){
+                        for(j=0; j< a_sel.length; j++){
+                            if(temp.indexOf(a_sel[j].replace(/ /g,'')) >= 0){
+                                c_Sel++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("Thiamin") == 0){
+                        for(j=0; j< a_thia.length; j++){
+                            if(temp.indexOf(a_thia[j].replace(/ /g,'')) >= 0){
+                                c_thia++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("VitaminA") == 0){
+                        for(j=0; j< a_vita.length; j++){
+                            if(temp.indexOf(a_vita[j].replace(/ /g,'')) >= 0){
+                                c_vita++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("VitaminB-12") == 0){
+                        for(j=0; j< a_vitb12.length; j++){
+                            if(temp.indexOf(a_vitb12[j].replace(/ /g,'')) >= 0){
+                                c_vitb12++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("VitaminC") == 0){
+                        for(j=0; j< a_vitc.length; j++){
+                            if(temp.indexOf(a_vitc[j].replace(/ /g,'')) >= 0){
+                                c_vitc++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("CoQ10") == 0){
+                        for(j=0; j< a_coq.length; j++){
+                            if(temp.indexOf(a_coq[j].replace(/ /g,'')) >= 0){
+                                c_coq++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("VitaminD") == 0){
+                        for(j=0; j< a_vitd.length; j++){
+                            if(temp.indexOf(a_vitd[j].replace(/ /g,'')) >= 0){
+                                c_vitd++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("VitaminE") == 0){
+                        for(j=0; j< a_vite.length; j++){
+                            if(temp.indexOf(a_vite[j].replace(/ /g,'')) >= 0){
+                                c_vite++;
+                            }
+                        }
+                    }else if(array_positive[n].localeCompare("VitaminK") == 0){
+                        for(j=0; j< a_vitk.length; j++){
+                            if(temp.indexOf(a_vitk[j].replace(/ /g,'')) >= 0){
+                                c_vitk++;
+                            }
+                        }
+                    }
+                    else{
+                        //console.log("Here");
+                        for(j=0; j< a_zinc.length; j++){
+                            if(temp.indexOf(a_zinc[j].replace(/ /g,'')) >= 0){
+                                c_zinc++;
+                            }
+                        }
+                    }
+
+                    
+                
+                }
+              console.log("Biotin" , c_biotin);  
+              console.log("Calcium" , c_cal);  
+              console.log("Chromium", c_chrom);    
+              console.log("Copper", c_copper);   
+              console.log("Essential fatty acid", c_fatty);   
+              console.log("Protein", c_protein);  
+              console.log("Carbs", c_carbs);
+              console.log("Folic Acid", c_folic);
+              console.log("Iodine", c_ion);
+              console.log("Iron", c_iron);
+              console.log("Magnesium" , c_mag);
+              console.log("Manganese" , c_man);
+              console.log("Niacin" , c_nia);
+              console.log("Pantothenic Acid(B6)", c_acid);
+              console.log("Potassium", c_pot);
+              console.log("Pyridoxine (B6)", c_pyr);
+              console.log("Riboflavin", c_ribo);
+              console.log("Selenium", c_Sel);
+              console.log("Thiamin" , c_thia);
+              console.log("Vitamin A" , c_vita);
+              console.log("Vitamin B-12" , c_vitb12);
+              console.log("Vitamin C" , c_vitc);
+              console.log("CoQ10" , c_coq);
+              console.log("Vitamin D" , c_vitd);
+              console.log("Vitamin E" , c_vite);
+              console.log("Vitamin K" , c_vitk);
+              console.log("Zinc" , c_zinc);
+            }
+            //console.log(array_positive);    
+              
         }
     });
 
