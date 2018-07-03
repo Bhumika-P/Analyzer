@@ -53,17 +53,40 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             var s = pagesText[i].replace(/ /g,'');
             //console.log(s);
             //console.log(i);
+            var array_p1= ["Fear" , "Anger" , "Bitterness" , "Grief", "Gossip", "Helplessness", "Hopelessness",
+                            "Guilt", "Betrayal", "Envy" , "Jealousy","Insecurity","Impatient","Arrogance",
+                            "Pride", "Hatred", "Rage", "Resentment", "Revenge", "Shame", "Sorrow", "Regret",
+                            "Passivity", "Slander", "Possessiveness", "Rebellion", " Unforgiveness", "Gambling",
+                            "Addictions"];
+            var array_p2 = ["Always Indoors", " DO not regularly change home filter", "Home has mold", "Home has an air ionizer",
+                            "Have plenty of green plants in my living space", "Practice deep breathing exercises regularly, especially outdoors",
+                            " I live away from city smog", " Dizziness", "Headaches", " WateryEyes", "Sneezing", "Cough Regularly",
+                            "Fatigue", "Smoke cigarettes regularly"];
+            var array_p3 = ["Dry mouth, dry eyes, dry nasal membranes", "Dry or leathery skin", "Dry or chapped lips",
+                            "Stools hard & Dry", "Low volume of urine, urinate infrequently", "Dark urine (dark yellow or orange)",
+                            "Poor skin turgor (loss of elasticity of skin)" , "Headaches", "Leg and arm cramps", "Weakness",
+                            "Drink less than eight 8 ounce glasses of water daily" ];
+            var array_p4 = ["Depression", "Poor Bone Health" , "Low Vitamin D levels", "Outfoors at least 30 minutes a day"];
+            var array_p5 = ["Headaches","Nausea","Brain fog","Sleep disorders", "Loss of memory", "Sensitive skin", "Dizziness", 
+                            "Burning sensation", "Rash", "Vision problems", "Chest pains" , "Swollen lymph nodes", "Live near electric towers",
+                            "Teeth & jaw pain", "Constantly having cellphone to the ears","On computer more than six hours","Aching muscles",
+                            "Fatigue","Bouts of unexplained fear or anxiety", "Tingling or prickly sensation across face or other parts of body",
+                            "Feeling of impeding influenza but never quite breaks out"];
+            var array_p6 = ["Exercise regularly at least twice a week", "Fatigue","Weight gain", "Weakness", "Muscle atrophy",
+                            "Depression", "Lack of flexibility and good balance",  "Heart problems" ];
+            var array_p7 = ["Painful or hard bowel movements", "Constipated, less than 1 bowel movement a day", "Varicose veins",
+                            "Hemorrhoids or rectal fissures", "Use lots of toilet paper to clean yourself",
+                            "Stools are pencil size and drop to the bottom of the toilet"  ];
+            var array_p8 =["Consume six types of vegetables daily", "Eat at least two types of fruit daily", "Consume at least an ounce of raw nuts daily",
+                            "50% of my diet is made up of raw foods", "I do not consume dairy, wheat or gluten containing foods",
+                            "I consume very little dairy or gluten (2 to 3 meals a week)", "Eat fresh and/or organic foods as much as possible",
+                            "Vegetarian", "Vegan", "Eat white fish two to three times a week" ];
             var s1p1 = s.indexOf("Checkanythatyouharbororareexperiencingforyourselfortowardsothersatthistime."); // Section 1- part 1
             var s1p2 = s.indexOf("Checkwhatcurrentlyappliestoyou"); // Section 1 - part 2
             var p1 = s.substring(s1p1 , s1p2);
             //Section 1 - part 1
             if(p1.length > 0){
                 var countp1=0;
-                var array_p1= ["Fear" , "Anger" , "Bitterness" , "Grief", "Gossip", "Helplessness", "Hopelessness",
-                                "Guilt", "Betrayal", "Envy" , "Jealousy","Insecurity","Impatient","Arrogance",
-                                "Pride", "Hatred", "Rage", "Resentment", "Revenge", "Shame", "Sorrow", "Regret",
-                                "Passivity", "Slander", "Possessiveness", "Rebellion", " Unforgiveness", "Gambling",
-                                "Addictions"];
                 for(j =0 ; j <array_p1.length; j++){
                     if(p1.indexOf(array_p1[j]) >= 0){
                         countp1++;
@@ -78,10 +101,6 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             var p2 = s.substring(s1p2 , s1p3);
             if(p2.length > 0 && p2.indexOf("Pizza") <0 ){
                 var countp2 = 0;
-                var array_p2 = ["Always Indoors", " DO not regularly change home filter", "Home has mold", "Home has an air ionizer",
-                                "Have plenty of green plants in my living space", "Practice deep breathing exercises regularly, especially outdoors",
-                                " I live away from city smog", " Dizziness", "Headaches", " WateryEyes", "Sneezing", "Cough Regularly",
-                                "Fatigue", "Smoke cigarettes regularly"];
                 for(j=0; j< array_p2.length; j++){
                     if(p2.indexOf(array_p2[j].replace(/ /g,'')) >= 0){
                         countp2++;
@@ -96,11 +115,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             if(p3p4.length > 0 && p3p4.indexOf("Pizza") <0){
                 var countp3 = 0;
                 var countp4 = 0;
-                var array_p3 = ["Dry mouth, dry eyes, dry nasal membranes", "Dry or leathery skin", "Dry or chapped lips",
-                                "Stools hard & Dry", "Low volume of urine, urinate infrequently", "Dark urine (dark yellow or orange)",
-                                "Poor skin turgor (loss of elasticity of skin)" , "Headaches", "Leg and arm cramps", "Weakness",
-                                "Drink less than eight 8 ounce glasses of water daily" ];
-                var array_p4 = ["Depression", "Poor Bone Health" , "Low Vitamin D levels", "Outfoors at least 30 minutes a day"];
+                
                 for(j=0; j< array_p3.length; j++){
                     if(p3p4.indexOf(array_p3[j].replace(/ /g,'')) >= 0){
                         countp3++;
@@ -121,11 +136,6 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             //console.log(p5);
             if(p5.length > 0 && p5.indexOf("Pizza") <0){
                 var countp5 = 0;
-                var array_p5 = ["Headaches","Nausea","Brain fog","Sleep disorders", "Loss of memory", "Sensitive skin", "Dizziness", 
-                                "Burning sensation", "Rash", "Vision problems", "Chest pains" , "Swollen lymph nodes", "Live near electric towers",
-                                "Teeth & jaw pain", "Constantly having cellphone to the ears","On computer more than six hours","Aching muscles",
-                                "Fatigue","Bouts of unexplained fear or anxiety", "Tingling or prickly sensation across face or other parts of body",
-                                "Feeling of impeding influenza but never quite breaks out"];
                 for(j=0; j< array_p5.length; j++){
                     if(p5.indexOf(array_p5[j].replace(/ /g,'')) >= 0){
                         countp5++;
@@ -140,9 +150,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             var p6 = s.substring(s1p7 , s1p8);
             //console.log(p6);
             if(p6.length > 0  && p6.indexOf("Pizza") <0){
-                var countp6 = 0;
-                var array_p6 = ["Exercise regularly at least twice a week", "Fatigue","Weight gain", "Weakness", "Muscle atrophy",
-                                "Depression", "Lack of flexibility and good balance",  "Heart problems" ];
+                var countp6 = 0;      
                 for(j=0; j< array_p6.length; j++){
                     if(p6.indexOf(array_p6[j].replace(/ /g,'')) >= 0){
                         countp6++;
@@ -157,9 +165,6 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             //console.log(p7);
             if(p7.length > 0  && p7.indexOf("Pizza") <0){
                 var countp7 = 0;
-                var array_p7 = ["Painful or hard bowel movements", "Constipated, less than 1 bowel movement a day", "Varicose veins",
-                                "Hemorrhoids or rectal fissures", "Use lots of toilet paper to clean yourself",
-                                "Stools are pencil size and drop to the bottom of the toilet"  ];
                 for(j=0; j< array_p7.length; j++){
                     if(p7.indexOf(array_p7[j].replace(/ /g,'')) >= 0){
                         countp7++;
@@ -174,10 +179,6 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             //console.log(p8);
             if(p8.length > 0  && p8.indexOf("Pizza") <0){
                 var countp8 = 0;
-                var array_p8 =["Consume six types of vegetables daily", "Eat at least two types of fruit daily", "Consume at least an ounce of raw nuts daily",
-                                "50% of my diet is made up of raw foods", "I do not consume dairy, wheat or gluten containing foods",
-                                "I consume very little dairy or gluten (2 to 3 meals a week)", "Eat fresh and/or organic foods as much as possible",
-                                "Vegetarian", "Vegan", "Eat white fish two to three times a week" ];
                 for(j=0; j< array_p8.length; j++){
                     if(p8.indexOf(array_p8[j].replace(/ /g,'')) >= 0){
                         countp8++;
@@ -499,7 +500,64 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
               console.log("Vitamin K" , c_vitk);
               console.log("Zinc" , c_zinc);
             }
-            //console.log(array_positive);    
+
+            array_b = ["I." , "II." , "III." , "IV.","V.","VI.","VII.","VIII","IX","X.","XI.","XII."];
+            
+            a_i = ["Belching or gas within one hour after eating" , "Heartburn or acid reflux", "Bad breath", "Bloated within one hour after eating", "Loss of taste for meat",
+                   "Sweat has strong odor", "Stomach upset by taking vitamins", "Feel like skipping breakfast", "Sleepy after meals", "Feel better if you do not eat", 
+                   "Fingernails chip, peel or break easily" ,  "Anemia unresponsive to iron", "Stomach pains or cramps", "Chronic Diarrhea", "Diarrhea shortly after meals",
+                    "Black or tarry colored tools","Undigested food in stool"];
+            a_ii= ["Pain between shoulder blades", "History of morning sickness","Bitter taste in mouth, especially after meals", "I am a recovering alcoholic", "Sensitive to tobacco smoke",
+                    "Sensitive to Nutrasweet (aspartame)","Stomach upset by greasy foods", "Light or clay colored stools", "Become sick if you drink wine", " History of drug or alcohol abuse",
+                     "Pain under right side of rib cage", "Greasy or shinny stools",  "Dry skin, itchy feet or skin peels on feet", "Easily intoxicated if you drink wine"," History of Hepatitis",
+                      "Hemorrhoids or varicose veins", "Nausea", "Headache over eyes" , "Easily hung over if you drink wine", "Long term use of prescription or recreational drugs",
+                      "Chronic fatigue or fibromyalgia", "Sea, car, airplane or motion sickness", "Gallbladder attack or removed", 
+                     "How much alcohol do you drink per week?", "Sensitive to chemicals","Nutrasweet consumption" ];
+            a_iii = ["Food Allergies" ,"Abdominal bloating 1 to 2 hours after eating" , "Pulse speeds after eating", "Specific foods make you tired or burdened" ,"Airborne allergies" ,
+                    "Experience hives" ,"Sinus congestion" , "Crave bread or noodles",  "Alternating constipation and diarrhea",  "Crohn’s disease" , "Wheat or grain sensitivity" , 
+                    "Asthma, sinus infections, stuffy nose" , "Dairy sensitivity",  "Bizarre, vivid dreams, nightmares" , "Feel spacy or unreal" , "Use over the counter pain medications"];
+            a_iv = ["Anus itches",  "Coated tongue",  "Feel worse in moldy or dusty places", "Have taken antibiotics for long periods (2 to 3 months or more)",  "Fungus or yeast infection",
+                   "Ringworm/Nail fungus",  "Blood in stool" ," Mucous in stool" , "Painful to press on outer side of thighs" , "Cramping in lower abdominal region" , "Dark circles under eyes",
+                    "Excessive foul smelling lower bowel gas",  "Irritable bowel or mucous colitis",  "Strong body odors",  "Less than 1 bowel movement daily"];
+            a_v = ["Awaken a few hours after falling asleep, hard to get back to sleep",  "Crave Sweets",  "Bing or uncontrolled eating",  "Excessive appetite",  "Crave coffee or sugar in afternoon"
+                  , "Sleepy in the afternoon",  "Fatigue that is relieved by eating", "Headaches if meals are skipped",  "Irritable before meals",  "Shaky if meals are delayed",
+                  "Family members with diabetes",  "Frequent thirst",  "Frequent Urination"];
+            a_vi = ["Tend to be a night person",  "Difficulty falling asleep",  "Slow starter in the morning",  "Keyed up, trouble calming down", "Blood pressure above 120/80",
+                    "A headache after exercising",  "Feeling wired or jittery after drinking coffee",  "Clench or grind teeth" ,"Calm on the outside, trouble on the inside",
+                    "Chronic low back pain, worse with fatigue",  "Become dizzy when standing up suddenly",  "Difficulty maintaining manipulative correction" ,
+                    "Pain after manipulative correction",  "Arthritic tendencies",  "Crave salty foods",  "Salt foods before tasting",  "Perspire easily",  
+                    "Chronic fatigue or get drowsy often",  "Afternoon yawning",  "After headaches",  "Asthma, wheezing or difficulty breathing",  "Pain on the medial or inner side of the knee" ,
+                     "Tendency to sprain ankles or shin splints" , "Tendency to need sunglasses",  "Allergies and/or hives", "Weakness, dizziness"];
+            a_vii = ["Sensitive/allergic to iodine",  "Difficulty gaining weight, even with large appetite",  "Nervous, emotional, can’t work under pressure",  "Inward trembling",  "Flush easily" ,
+                    "Fast pulse at rest" , "Intolerant of high temperatures",  "Difficulty losing weight" , "Mentally sluggish, reduced initiative",  "Easily fatigued, sleepy during the day" ,
+                     "Sensitive to cold, poor circulation (cold hands and feet)",  "Chronic constipation",  "Excessive hair loss and/or coarse hair",  "Morning headaches, wear off during the day",
+                    "Seasonal sadness",  "Loss of lateral 1/3 of eyebrow"];
+            a_viii = ["Prostate problems",  "Difficulty with urination or dribbling",  "Difficult to start or stop urine stream" , "Pain or burning during urination",  "Waking to urinate at night", 
+                    "Interruption of stream during urination",  "Pain on inside of legs or heels",  "Feeling of incomplete bowel evacuation",  "Decreased sexual function"];
+            a_ix = ["Depression during periods",  "Mood swings associated with periods (PMS)" ,"Crave chocolate around period",  "Breast tenderness associated with cycle" ,"Excessive menstrual flow",
+                    "Scanty blood flow during periods",  "Occasional skipped periods",  "Variations in menstrual cycle",  "Endometriosis",  "Uterine fibroids",  "Breast fibroids, benign masses",  
+                    "Painful intercourse",  "Vaginal discharge",  "Vaginal itchiness",  "Vaginal dryness",  "Weight gain around hips, thighs, and buttocks",  "Excessive facial or body hair",  
+                    "Thinning skin", "Hotflashes",  "Night sweats (in menopausal women)"];
+            a_x = ["Aware of heavy or irregular breathing",  "Discomfort at high altitudes" , "Air hunger or sigh frequently",  "Compelled to open windows in a closed room",  "Shortness of breath with moderate exertion", 
+                   "Ankles swell, especially at end of day",  "Cough at night", "Blush or face turns red for no reason",  "Muscle cramps with exertion",  "Cold hands and feet , even in the warm season",
+                    "Dull pain or tightness in chest and/or radiate into right arm, worse with exertion",  "Numbness in certain parts of the body",  "Dry skin despite regular consumption of water",  "Frequent dizziness",  
+                    "Memory loss",  "Lack of energy or frequent exhaustion" , "Skin discoloration blemishes, or spots",  "Weakened immune system",  "Unexplained digestive problems", "Low libido (sex drive)",  
+                    "Decreased cognitive ability",  "Brittle hair and nails",  "Hair loss",  "Headaches", "Dark circles under eyes",  "Problems with sleep",  "Chronic pain or muscular and joint stiffness",  
+                    "Problems with leg ulcers or bed sores",  "Varicose veins"];
+            a_xi = ["Pain in mid-back region",  "Puffy around the eyes, dark circles under eyes" , "History of kidney stones",  "Cloudy, bloody or darkened urine",  "Urine has a strong odor"];
+            a_xii = ["Runny or drippy nose",  "Catch colds at the beginning of winter",  "Adult acne" , "Itchy skin",  "Cysts, boils, rashes",  "History of Epstein Bar",  "Frequent colds or flu",
+                      "Frequent infections",  "Mucous-producing cough",  "History of Mono, Herpes",  "History of Shingles, Chronic fatigue, Hepatitis or other chronic viral condition"];
+            b_pos = [];
+            for(k=0;k<array_b.length;k++){
+                if(s.indexOf(array_b[k]) >= 0){
+                    b_pos.push(array_b[k].replace(/ /g,''));
+                }
+            }
+
+            if(b_pos.length > 0){
+
+            }
+            console.log(b_pos);
               
         }
     });
