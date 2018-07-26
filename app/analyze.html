@@ -1,0 +1,338 @@
+<html>
+  <head>
+    <script src="pdf.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="formstyle.css"/>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+
+  </head>
+  <body>
+    <h1><img src="Primitius2.png" ></h1>
+    <h1>Analyzer</h1>
+      <form id="myform">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="John" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="gender">Gender</label>
+              <input type="text" class="form-control" id="gender">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="age">Age</label>
+              <input type="text" class="form-control" id="age">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="contact">Contact Number</label>
+              <input type="text" class="form-control" id="contact">
+            </div>
+         </div>
+          
+         <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="height">Height</label>
+            <input type="text" class="form-control" id="height">
+          </div>
+          </div>
+         
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="weight">Weight</label>
+              <input type="text" class="form-control" id="weight">
+            </div>
+        </div>
+
+          <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="bmi">BMI</label>
+            <input type="text" class="form-control" id="bmi">
+          </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="eyes">Color of Eyes</label>
+              <input type="text" class="form-control" id="eyes" required>
+            </div>
+        </div>
+
+          <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" required>
+              </div>
+          </div>
+  
+
+        <div>
+          <h3>Section I - Natural Health/Mental Health/Spiritual Health Survey</h3>
+
+          <table class="c_table">
+            <thead>
+              <tr>
+                <td>Section</td>
+                <td>Score</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="left">Part 1: Psycho-Spiritual Survey</td>
+                <td class="right"><input type = "textbox" id = "part1"></td>
+              </tr>
+              <tr>
+                <td>Part 2: Air Quality</td>
+                <td><input type = "textbox" id = "part2"></td>
+              </tr>
+              <tr>
+                <td>Part 3: Water Intake</td>
+                <td><input type = "textbox" id = "part3"></td>
+              </tr>
+              <tr>
+                <td>Part 4: Light</td>
+                <td><input type = "textbox" id = "part4"></td>
+              </tr>
+              <tr>
+                <td>Part 5: EMF</td>
+                <td><input type = "textbox" id = "part5"></td>
+              </tr>
+              <tr>
+                <td>Part 6: Exercise</td>
+                <td><input type = "textbox" id = "part6"></td>
+              </tr>
+              <tr>
+                <td>Part 7: Fiber</td>
+                <td><input type = "textbox" id = "part7"></td>
+              </tr>
+              <tr>
+                <td>Part 8: Diet</td>
+                <td><input type = "textbox" id = "part8"></td>
+              </tr>
+              <tr>
+                <td>Part 9A: Toxicity</td>
+                <td><input type = "textbox" id = "part9a"></td>
+              </tr>
+              <tr>
+                <td>Part 9B: Toxicity</td>
+                <td><input type = "textbox" id = "part9b"></td>
+              </tr>
+              <tr>
+                <td>Part 10: Parasite Survey</td>
+                <td><input type = "textbox" id = "part10"></td>
+              </tr>
+              <tr>
+                <td>Part 11: Yeast Survey</td>
+                <td><input type = "textbox" id = "part11"></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h3>Section II – Part A: Elemental Survey</h3>
+          <table class="c_table">
+            <thead>
+              <tr>
+                <td>Section</td>
+                <td>Score</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Biotin</td>
+                <td><input type = "textbox" id = "biotin"></td>
+              </tr>
+              <tr>
+                <td>Calcium</td>
+                <td><input type = "textbox" id = "calc"></td>
+              </tr>
+              <tr>
+                <td>Chromium</td>
+                <td><input type = "textbox" id = "chrom"></td>
+              </tr>
+              <tr>
+                <td>Copper</td>
+                <td><input type = "textbox" id = "copper"></td>
+              </tr>
+              <tr>
+                <td>Essential Fatty Acids</td>
+                <td><input type = "textbox" id = "fattyacid"></td>
+              </tr>
+              <tr>
+                <td>Protein</td>
+                <td><input type = "textbox" id = "protein"></td>
+              </tr>
+              <tr>
+                <td>Carbohydrate</td>
+                <td><input type = "textbox" id = "carbs"></td>
+              </tr>
+              <tr>
+                <td>Folic Acid</td>
+                <td><input type = "textbox" id = "folic"></td>
+              </tr>
+              <tr>
+                <td>Iodine</td>
+                <td><input type = "textbox" id = "iodine"></td>
+              </tr>
+              <tr>
+                <td>Iron</td>
+                <td><input type = "textbox" id = "iron"></td>
+              </tr>
+              <tr>
+                <td>Magnesium</td>
+                <td><input type = "textbox" id = "mag"></td>
+              </tr>
+              <tr>
+                <td>Manganese</td>
+                <td><input type = "textbox" id = "mana"></td>
+              </tr>
+              <tr>
+                <td>Niacin</td>
+                <td><input type = "textbox" id="nia"></td>
+              </tr>
+              <tr>
+                <td>Pantothenic Acid</td>
+                <td><input type = "textbox" id = "pana"></td>
+              </tr>
+              <tr>
+                <td>Potassium</td>
+                <td><input type = "textbox" id = "pot"></td>
+              </tr>
+              <tr>
+                <td>Pyridoxine (B6)</td>
+                <td><input type = "textbox" id = "b6"></td>
+              </tr>
+              <tr>
+                <td>Riboflavin (B2)</td>
+                <td><input type = "textbox" id = "ribo"></td>
+              </tr>
+              <tr>
+                <td>Selenium</td>
+                <td><input type = "textbox" id = "sel"></td>
+              </tr>
+              <tr>
+                <td>Thiamin (B1)</td>
+                <td><input type = "textbox" id = "thia"></td>
+              </tr>
+              <tr>
+                <td>Vitamin A</td>
+                <td><input type = "textbox" id = "vita"></td>
+              </tr>
+              <tr>
+                <td>Vitamin B12</td>
+                <td><input type = "textbox" id = "vitb12"></td>
+              </tr>
+              <tr>
+                <td>Vitamin C</td>
+                <td><input type = "textbox" id = "vitc"></td>
+              </tr>
+              <tr>
+                <td>CoQ10</td>
+                <td><input type = "textbox" id = "coq"></td>
+              </tr>
+              <tr>
+                <td>Vitamin D</td>
+                <td><input type = "textbox" id = "vitd"></td>
+              </tr>
+              <tr>
+                <td>Vitamin E</td>
+                <td><input type = "textbox" id = "vite"></td>
+              </tr>
+              <tr>
+                <td>Vitamin K</td>
+                <td><input type = "textbox" id = "vitk"></td>
+              </tr>
+              <tr>
+                <td>Zinc</td>
+                <td><input type = "textbox" id = "zinc"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>Section II – Part B: Body Systems Survey</h3>
+          <table class="c_table">
+            <thead>
+              <tr>
+                <td>Section</td>
+                <td>Score</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Part I: Upper GI</td>
+                <td><input type = "textbox" id = "i"></td>
+              </tr>
+              <tr>
+                <td>Part II: Liver/Gallblabber</td>
+                <td><input type = "textbox" id = "ii"></td>
+              </tr>
+              <tr>
+                <td>Part III: Small Intestine</td>
+                <td><input type = "textbox" id = "iii"></td>
+              </tr>
+              <tr>
+                <td>Part IV: Large Intestine</td>
+                <td><input type = "textbox" id = "iv"></td>
+              </tr>
+              <tr>
+                <td>Part V: Sugar Handling</td>
+                <td><input type = "textbox" id = "v"></td>
+              </tr>
+              <tr>
+                <td>Part VI: Adrenal</td>
+                <td><input type = "textbox" id = "vi"></td>
+              </tr>
+              <tr>
+                <td>Part VII: Thyroid</td>
+                <td><input type = "textbox" id = "vii"></td>
+              </tr>
+              <tr>
+                <td>Part VIII: Men Only</td>
+                <td><input type = "textbox" id = "viii"></td>
+              </tr>
+              <tr>
+                <td>Part IX: Women Only</td>
+                <td><input type = "textbox" id = "ix"></td>
+              </tr>
+              <tr>
+                <td>Part X: Cardiovascular Health</td>
+                <td><input type = "textbox" id = "x"></td>
+              </tr>
+              <tr>
+                <td>Part XI: Kidney And Bladder</td>
+                <td><input type = "textbox" id = "xi"></td>
+              </tr>
+              <tr>
+                <td>Part XII: Immune System</td>
+                <td><input type = "textbox" id = "xii"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </form>
+    <script src="data.js" type = "text/javascript"></Script>
+  </body>
+  <div class="noprint" style="float:left; margin-left:20px; text-align:right; width:500px; margin-right:50px; margin-top:20px;">
+    <button class="button" onclick="customPrint();">Print</button></div>
+    
+</html>
+<script type="text/javascript">
+  var customPrint = function() {
+
+  $('.noprint').addClass('nodisplay');
+  window.print();
+  $('.noprint').removeClass('nodisplay');
+}
+
+  </script>

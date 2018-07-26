@@ -1,7 +1,10 @@
       
       // Specify the path to the worker
-      
-      PDFJS.workerSrc = 'pdf.worker.js';
+function myFunction(){
+
+var PDF_URL = document.getElementById("uploadBox").files[0].path;
+
+PDFJS.workerSrc = 'pdf.worker.js';
 
       function getPageText(pageNum, PDFDocumentInstance) {
     // Return a Promise that is solved once the text of the page is retrieven
@@ -25,7 +28,9 @@
         });
     });
 }
-var PDF_URL = 'form.pdf';
+//var  file_name = document.getElementById("uploadBox").value ;
+
+
 
 PDFJS.getDocument(PDF_URL).then(function (pdf) {
 
@@ -46,18 +51,112 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
 
         // Display text of all the pages in the console
         // e.g ["Text content page 1", "Text content page 2", "Text content page 3" ... ]
-        //console.log(pagesText);
-        //console.log(pagesText[0].length);
-        //document.getElementById("test").innerHTML = pagesText[1].length;
         for(i = 0; i <pagesText.length;i++){
-            var s = pagesText[i].replace(/ /g,'');
-            //console.log(s);
-            //console.log(i);
+            var s = pagesText[i];
+            //Array of all elements
+            var info = ["Name" , "Gender" , "Age" , "Contact Number" , "Height","Weight",  "BMI" , "Address","Color of Eyes" , "Email"];
+            var section1 = ["(a)" , "(b)" , "(c)" , "(d)" , "(e)", "(f)", "(g)", "(h)"];
+            var s1_p9 = ["(i)", "(j)", "(k)", "(l)"];
+            var all = ["Biotin" , "Calcium" , "Chromium" , "Copper", "EssentialFattyAcids",
+                        "Protein", "Carbohydrates", "FolicAcid", "Iodine" , "Iron" , "Magnesium","Manganese",
+                        "Niacin", "PantothenicAcid(B6)" ,"Potassium", "Pyridoxine(B6)", "Riboflavin",
+                        "Selenium","Thiamin", "VitaminA", "VitaminB-12",  "VitaminC", "CoQ10",
+                        "VitaminD","VitaminE", "VitaminK","Zinc"] ;
+            array_b = ["I." , "II." , "III." , "IV.","V.","VI.","VII.","VIII","IX","X.","XI.","XII."];
+            var p_info = [];
+            for(j = 0 ; j < info.length ; j++){
+                if(s.indexOf(info[j]) >=0 ){
+                    p_info.push(info[j]);
+                }
+            }
+
+            if(p_info.length > 0){
+                for(j = 0 ; j < p_info.length;j++){
+                    if(j < p_info.length - 1){
+                        var index1 = s.indexOf(p_info[j]);
+                        var index2 = s.indexOf(p_info[j+1]);
+                        var temp = s.substring(index1 , index2); 
+                        
+                    }else{ //last member of array
+                        var index1 = s.indexOf(p_info[j]);
+                        var index2;
+                        for(j1 = 0; j1 < section1.length ; j1++){
+                            index2 = s.indexOf(section1[j1]);
+                            if(index2 >= 0){
+                                break;
+                            }
+                        }
+                        if(index2 < 0){
+                            for(j1 = 0; j1 < s1_p9.length ; j1++){
+                                index2 = s.indexOf(s1_p9[j1]);
+                                
+                                if(index2 >= 0){
+                                    break;
+                                }
+                            }
+                        }
+                        if(index2 < 0){
+                            for(j1 = 0; j1 < all.length ; j1++){
+                                index2 = s.indexOf(all[j1]);
+                                
+                                if(index2 >= 0){
+                                    break;
+                                }
+                            }
+                        }
+                        if(index2 < 0){
+                          for( j1 = 0 ; j1 <array_b.length ; j1++){
+                              index2 = s.indexOf(array_b[j1]);
+                            
+                              if(index2 >= 0){
+                                  break;
+                              }
+                            }
+                        }
+
+                        if(index2 < 0){
+                            index2 =  pagesText[i].length;
+                        }
+
+                        var temp = s.substring(index1, index2);
+                    }
+                    if(p_info[j].localeCompare("Name") == 0){
+                        document.getElementById("name").value = temp.replace("Name" , "");
+                    }else if(p_info[j].localeCompare("Gender") == 0){
+                        if(temp.indexOf("F") >= 0){
+                            document.getElementById("gender").value = "Female";
+                        }else{
+                            document.getElementById("gender").value = "Male";
+                        }
+                    }else if(p_info[j].localeCompare("Age") == 0){
+                        document.getElementById("age").value = temp.replace("Age" , "");
+                    }else if(p_info[j].localeCompare("Contact Number") == 0){
+                        document.getElementById("contact").value = temp.replace("Contact Number" , "");
+                    }else if(p_info[j].localeCompare("Height") == 0){
+                        document.getElementById("height").value = temp.replace("Height" , "");
+                    }else if(p_info[j].localeCompare("Weight") == 0){
+                        document.getElementById("weight").value = temp.replace("Weight" , "");
+                    }else if(p_info[j].localeCompare("BMI") == 0){
+                        document.getElementById("bmi").value = temp.replace("BMI" , "");
+                    }else if(p_info[j].localeCompare("Color of Eyes") == 0){
+                        document.getElementById("eyes").value = temp.replace("Color of Eyes" , "");
+                    }else if(p_info[j].localeCompare("Email") == 0){
+                        document.getElementById("email").value = temp.replace("Email" , "");
+                    }else{
+
+                    }
+                }
+
+                
+            }
+            // Section I 
+            s = pagesText[i].replace(/ /g,'')
+            
             var array_p1= ["Fear" , "Anger" , "Bitterness" , "Grief", "Gossip", "Helplessness", "Hopelessness",
                             "Guilt", "Betrayal", "Envy" , "Jealousy","Insecurity","Impatient","Arrogance",
                             "Pride", "Hatred", "Rage", "Resentment", "Revenge", "Shame", "Sorrow", "Regret",
                             "Passivity", "Slander", "Possessiveness", "Rebellion", " Unforgiveness", "Gambling",
-                            "Addictions"];
+                            "Addictions" , "Other"];
             var array_p2 = ["Always Indoors", " DO not regularly change home filter", "Home has mold", "Home has an air ionizer",
                             "Have plenty of green plants in my living space", "Practice deep breathing exercises regularly, especially outdoors",
                             " I live away from city smog", " Dizziness", "Headaches", " WateryEyes", "Sneezing", "Cough Regularly",
@@ -66,7 +165,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             "Stools hard & Dry", "Low volume of urine, urinate infrequently", "Dark urine (dark yellow or orange)",
                             "Poor skin turgor (loss of elasticity of skin)" , "Headaches", "Leg and arm cramps", "Weakness",
                             "Drink less than eight 8 ounce glasses of water daily" ];
-            var array_p4 = ["Depression", "Poor Bone Health" , "Low Vitamin D levels", "Outfoors at least 30 minutes a day"];
+            var array_p4 = ["Depression", "Poor Bone Health" , "Low Vitamin D levels", "Outdoors at least 30 minutes a day"];
             var array_p5 = ["Headaches","Nausea","Brain fog","Sleep disorders", "Loss of memory", "Sensitive skin", "Dizziness", 
                             "Burning sensation", "Rash", "Vision problems", "Chest pains" , "Swollen lymph nodes", "Live near electric towers",
                             "Teeth & jaw pain", "Constantly having cellphone to the ears","On computer more than six hours","Aching muscles",
@@ -81,130 +180,321 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             "50% of my diet is made up of raw foods", "I do not consume dairy, wheat or gluten containing foods",
                             "I consume very little dairy or gluten (2 to 3 meals a week)", "Eat fresh and/or organic foods as much as possible",
                             "Vegetarian", "Vegan", "Eat white fish two to three times a week" ];
-            var s1p1 = s.indexOf("Checkanythatyouharbororareexperiencingforyourselfortowardsothersatthistime."); // Section 1- part 1
-            var s1p2 = s.indexOf("Checkwhatcurrentlyappliestoyou"); // Section 1 - part 2
-            var p1 = s.substring(s1p1 , s1p2);
-            //Section 1 - part 1
-            if(p1.length > 0){
-                var countp1=0;
-                for(j =0 ; j <array_p1.length; j++){
-                    if(p1.indexOf(array_p1[j]) >= 0){
-                        countp1++;
-                    }
-                }
-                //console.log(array_p1.length);
-                console.log("Section 1 - part 1" , countp1);
-                document.getElementById("demo").innerHTML = countp1;
-            }
-            var s1p3 = s.indexOf("Checkwhichcurrentlyapplies"); // Section 1 - part 3 and 4
-            //Section 1 - part 2- Need to fix extra string problem
-            var p2 = s.substring(s1p2 , s1p3);
-            if(p2.length > 0 && p2.indexOf("Pizza") <0 ){
-                var countp2 = 0;
-                for(j=0; j< array_p2.length; j++){
-                    if(p2.indexOf(array_p2[j].replace(/ /g,'')) >= 0){
-                        countp2++;
-                    }
-                }
-                console.log("Section 1 - part 2" , countp2);
-            }
-            var s1p5 = s.indexOf("Checkwhatyouarecurrentlyexperiencing"); // Section 1 - Part 5
-            //Section 1- part 3 and 4
-            var p3p4 = s.substring(s1p3 , s1p5);
-            //console.log(p3p4);
-            if(p3p4.length > 0 && p3p4.indexOf("Pizza") <0){
-                var countp3 = 0;
-                var countp4 = 0;
-                
-                for(j=0; j< array_p3.length; j++){
-                    if(p3p4.indexOf(array_p3[j].replace(/ /g,'')) >= 0){
-                        countp3++;
-                    }
-                }
-                for(j=0; j< array_p4.length; j++){
-                    if(p3p4.indexOf(array_p4[j].replace(/ /g,'')) >= 0){
-                        countp4++;
-                    }
-                }
-                console.log("Section 1 - part 3" , countp3);
-                console.log("Section 1 - part 4" , countp4);  
-            }
-            var s1p6 = s.indexOf("Checkwhichappliestoyou");
-            //Section 1 - part 5
+            var array_p9a = ["Allergies" , "Chronic Headaches/migraines" , "Chronic skin problems",  "Digestive problems",  "Diabetes" , "Autoimmune disease",  "Difficulty sleeping",  
+                            "Depression/poor mood" , "Low energy" , "Liver dysfunction" , "Overweight" , "Sore muscles or stiff joints" , "Unhealthy cravings" , "Chemical sensitivities/Environmental illness",  
+                            "Sleepy after meals" , "Food Allergies"];
+            var array_p9b = ["High Blood Pressure",  "Numbness and tingling in extremity" , "Twitching of face and other muscles",  "Tremors or shakes of hands, feet, head, etc.",  "Jumpy, jittery, nervous",  
+                            "Unexplained chest pains",  "Heartbeat over 100 per minute" , "Unexplained rashes or skin irritations",  "Excessive itching",  "Bloated feeling most of the time",  "Frequent or re-occurring heartburn",  
+                            "Constipated on regular basis" , "Frequent diarrhea" , "Depression" , "Unexplained irritability" , "Sudden, unexplained or unsolicited anger",  "Constant death wish or suicidal intent",  
+                            "Difficulty in making simple decisions" , "Cold hands or feet, even in warm or moderate weather" , "Out of breath easily" , "Headaches after eating" , "Frequent leg cramps",  
+                            "Frequent metallic taste in mouth" , "Burning sensation on the tongue" , "Constant or frequent ringing in the ears" , "Frequent urination during the night" , "Unexplained chronic fatigue" , 
+                            "Poor or failing memory" , "Constant or frequent pain in joins" , "Frequent insomnia ", "Unexplained fluid retention"];
+            var array_p10 = ["Gas" , "Bloating" , "Abdominal fullness" , "Nausea" , "Constipation" , "Diarrhea" , "Abdominal cramps or pain" , "Fatigue" , "Hives" , "Allergies, especially foods" , "History of parasitic infections" , 
+                            "History of traveler's diarrhea" , "Difficulty overcoming intestinal yeast growth"];
+            var array_p11 = ["Gas" , "Bloating" , "Constipation and/or diarrhea" , "Spastic/irritable colon" , "Chron's Disease, Colitis" , "Intestinal cramping" , "Heart Burn" , "Itchy anus" , 
+                            "Continuous sinus problems" , "Chronic or re-occurring sore throat, colds, bronchitis, ear infection",  "Premenstrual symptoms" , "Menstrual cramps and problems" , "Fatigue" ,
+                            "Depression" , "Irritability or chronic vaginal yeast infections" , "Infertility" , "Chronic rashes",  "Recurrent bladder infections or irritation" , "Recurrent staph infections" ,
+                            "Itchy ears or ringing in the ears" , "General itching" , "Multiple allergies" , "Weight problems",  "Craving for sweets, alcohol, bread, cheese" , "Feel drunk without having ingested alcohol" ,
+                             "Chemical and fume intolerance" , "Worsening of any of the above symptoms within six to twelve months after a pregnancy",  
+                            "Multiple pregnancies" , "Antibiotic use" , "Birth control pill (oral contraceptives) use" , "Cortisone or steroid use" , "Chemotherpy or radiation therpy"];
+            var s1 = [];
+            var count_a = 0;
+            var count_b = 0;
+            var count_c = 0;
+            var count_d = 0;
+            var count_e = 0;
+            var count_f = 0;
+            var count_g = 0;
+            var count_h = 0;
+            var count_i = 0;
+            var count_j = 0;
+            var count_k = 0;
+            var c_iron = 0;
             
-            var p5 = s.substring(s1p5, s1p6);
-            //console.log(p5);
-            if(p5.length > 0 && p5.indexOf("Pizza") <0){
-                var countp5 = 0;
-                for(j=0; j< array_p5.length; j++){
-                    if(p5.indexOf(array_p5[j].replace(/ /g,'')) >= 0){
-                        countp5++;
-                    }
+            for(k=0; k<section1.length;k++){
+                if(s.indexOf(section1[k]) >= 0 ){
+                    s1.push(section1[k].replace(/ /g,''));
                 }
-                console.log("Section 1 - part 5" , countp5);
-            }   
+            }
+            if(s1.length > 0){
+                for(n = 0; n<s1.length ; n++){
+                    
+                    if(n < (s1.length - 1)){
+                          var index1 = s.indexOf(s1[n]);
+                          var index2 = s.indexOf(s1[n+1]);
+                          var temp = s.substring(index1 , index2); 
+                    }else{ //last member of array
+                          var index1 = s.indexOf(s1[n]);
+                          var index2;
+                      
+                            for(j1 = 0; j1 < s1_p9.length ; j1++){
+                                index2 = s.indexOf(s1_p9[j1]);
+                                
+                                if(index2 >= 0){
+                                    break;
+                                }
+                            }
 
-            //Section 1- Part 6
-
-            var s1p7 = s.indexOf("Checkwhichcurrentlyapplies");
-            var p6 = s.substring(s1p7 , s1p8);
-            //console.log(p6);
-            if(p6.length > 0  && p6.indexOf("Pizza") <0){
-                var countp6 = 0;      
-                for(j=0; j< array_p6.length; j++){
-                    if(p6.indexOf(array_p6[j].replace(/ /g,'')) >= 0){
-                        countp6++;
+                        if(index2 < 0){
+                            for(j1 = 0; j1 < all.length ; j1++){
+                                index2 = s.indexOf(all[j1]);
+                                
+                                if(index2 >= 0){
+                                    break;
+                                }
+                            }
                         }
-                }
-                console.log("Section 1 - part 6" , countp6);
-            }
+                        if(index2 < 0){
+                          for( j1 = 0 ; j1 <array_b.length ; j1++){
+                              index2 = s.indexOf(array_b[j1]);
+                            
+                              if(index2 >= 0){
+                                  break;
+                              }
+                            }
+                        }
 
-            //Section 1 - Part 7
-            var s1p8 = s.indexOf("Checkwhatappliestoyoupresently");
-            var p7 = s.substring(s1p7,s1p8);
-            //console.log(p7);
-            if(p7.length > 0  && p7.indexOf("Pizza") <0){
-                var countp7 = 0;
-                for(j=0; j< array_p7.length; j++){
-                    if(p7.indexOf(array_p7[j].replace(/ /g,'')) >= 0){
-                        countp7++;
+                        if(index2 < 0){
+                            index2 =  pagesText[i].length;
+                        }
+
+                        var temp = s.substring(index1, index2);
+                    }
+
+                    if(s1[n].localeCompare("(a)") == 0){
+                        for(j=0; j< array_p1.length; j++){
+                            if(temp.indexOf(array_p1[j].replace(/ /g,'')) >= 0){
+                                count_a++;
+                            }
+                        }        
+                        document.getElementById("part1").value = count_a;
+                        if(count_a >= 1 & count_a <= 4){
+                            document.getElementById("p_part1").value = "Low";
+                        }else if(count_a >= 5 & count_a <=7){
+                            document.getElementById("p_part1").value = "Medium";
+                        }else{
+                            document.getElementById("p_part1").value = "High";
+                        }
+                    }else if(s1[n].localeCompare("(b)") == 0){
+                        for(j=0; j< array_p2.length; j++){
+                            if(temp.indexOf(array_p2[j].replace(/ /g,'')) >= 0){
+                                count_b++;
+                            }
+                        }        
+                        document.getElementById("part2").value = count_b;
+                        if(count_b >= 1 & count_b <= 2){
+                            document.getElementById("p_part2").value = "Low";
+                        }else if(count_b >= 3 & count_b <=5){
+                            document.getElementById("p_part2").value = "Medium";
+                        }else{
+                            document.getElementById("p_part2").value = "High";
+                        }
+                    }else if(s1[n].localeCompare("(c)") == 0){
+                        for(j=0; j< array_p3.length; j++){
+                            if(temp.indexOf(array_p3[j].replace(/ /g,'')) >= 0){
+                                count_c++;
+                            }
+                        }        
+                        document.getElementById("part3").value = count_c;
+                        if(count_c >= 1 & count_c <= 2){
+                            document.getElementById("p_part3").value = "Low";
+                        }else if(count_c >= 3 & count_c <=5){
+                            document.getElementById("p_part3").value = "Medium";
+                        }else{
+                            document.getElementById("p_part3").value = "High";
+                        }
+                    }else if(s1[n].localeCompare("(d)") == 0){
+                        for(j=0; j< array_p4.length; j++){
+                            if(temp.indexOf(array_p4[j].replace(/ /g,'')) >= 0){
+                                count_d++;
+                            }
+                        }        
+                        document.getElementById("part4").value = count_d;    
+                        if(count_d == 1){
+                            document.getElementById("p_part4").value = "Low";
+                        }else if(count_d == 2){
+                            document.getElementById("p_part4").value = "Medium";
+                        }else{
+                            document.getElementById("p_part4").value = "High";
+                        }
+                    }else if(s1[n].localeCompare("(e)") == 0){
+                        for(j=0; j< array_p5.length; j++){
+                            if(temp.indexOf(array_p5[j].replace(/ /g,'')) >= 0){
+                                count_e++;
+                            }
+                        } 
+                        document.getElementById("part5").value = count_e;     
+                        if(count_e >= 1 & count_e <= 4){
+                            document.getElementById("p_part5").value = "Low";
+                        }else if(count_e >= 5 & count_e <=10){
+                            document.getElementById("p_part5").value = "Medium";
+                        }else{
+                            document.getElementById("p_part5").value = "High";
+                        }  
+                    }else if(s1[n].localeCompare("(f)") == 0){
+                        for(j=0; j< array_p6.length; j++){
+                            if(temp.indexOf(array_p6[j].replace(/ /g,'')) >= 0){
+                                count_f++;
+                            }
+                        }        
+                        document.getElementById("part6").value = count_f;
+                        if(count_f >= 1 & count_f <= 2){
+                            document.getElementById("p_part6").value = "Low";
+                        }else if(count_f >= 3 & count_f <=4){
+                            document.getElementById("p_part6").value = "Medium";
+                        }else{
+                            document.getElementById("p_part6").value = "High";
+                        }
+                    }else if(s1[n].localeCompare("(g)") == 0){
+                        for(j=0; j< array_p7.length; j++){
+                            if(temp.indexOf(array_p7[j].replace(/ /g,'')) >= 0){
+                                count_g++;
+                            }
+                        } 
+                        document.getElementById("part7").value = count_g;       
+                        if(count_g == 1){
+                            document.getElementById("p_part7").value = "Low";
+                        }else if(count_g >= 2 & count_g <=3){
+                            document.getElementById("p_part7").value = "Medium";
+                        }else{
+                            document.getElementById("p_part7").value = "High";
+                        }
+                    }else if(s1[n].localeCompare("(h)") == 0){
+                        for(j=0; j< array_p8.length; j++){
+                            if(temp.indexOf(array_p8[j].replace(/ /g,'')) >= 0){
+                                count_h++;
+                            }
+                        }   
+                        document.getElementById("part8").value = count_h;     
+                        if(count_h >= 1 & count_h <= 2){
+                            document.getElementById("p_part8").value = "Low";
+                        }else if(count_h >= 5 & count_h <=4){
+                            document.getElementById("p_part8").value = "Medium";
+                        }else{
+                            document.getElementById("p_part8").value = "High";
+                        }
+                    }else{
+
                     }
                 }
-                console.log("Section 1 - part 7" , countp7);
+          }
+
+              var pos_9 = [];
+            
+            for(k=0; k<s1_p9.length;k++){
+                if(s.indexOf(s1_p9[k]) >= 0 ){
+                    pos_9.push(s1_p9[k].replace(/ /g,''));
+                }
             }
 
-            //Section 1 - Part 8
-            var s1p9 = s.indexOf("FriedFoods");
-            var p8 = s.substring(s1p8,s1p9);
-            //console.log(p8);
-            if(p8.length > 0  && p8.indexOf("Pizza") <0){
-                var countp8 = 0;
-                for(j=0; j< array_p8.length; j++){
-                    if(p8.indexOf(array_p8[j].replace(/ /g,'')) >= 0){
-                        countp8++;
+            if(pos_9.length > 0){
+                for(n = 0; n<pos_9.length ; n++){                  
+                    if(n < (pos_9.length - 1)){
+                          var index1 = s.indexOf(pos_9[n]);
+                          var index2 = s.indexOf(pos_9[n+1]);
+                          var temp = s.substring(index1 , index2); 
+                    }else{ //last member of array
+                          var index1 = s.indexOf(pos_9[n]);
+                          var index2 ;
+                          for(j = 0; j < all.length ; j++){
+                              index2 = s.indexOf(all[j]);
+                              
+                              if(index2 >= 0){
+                                  break;
+                              }
+                          }
+                          if(index2 < 0){
+                            for( j = 0 ; j <array_b.length ; j++){
+                                index2 = s.indexOf(array_b[j]);
+                              
+                                if(index2 >= 0){
+                                    break;
+                                }
+                              }
+                          }
+
+                          if(index2 < 0){
+                            index2 =  pagesText[i].length;
+                          }
+                          var temp = s.substring(index1, index2);
+                         
+                    }
+
+                    if(pos_9[n].localeCompare("(i)") == 0){
+                        for(j=0; j< array_p9a.length; j++){
+                            if(temp.indexOf(array_p9a[j].replace(/ /g,'')) >= 0){
+                                count_i++;
+                            }
+                        }
+                        document.getElementById("part9a").value = count_i;        
+                        if(count_i >= 1 & count_i <= 4){
+                            document.getElementById("p_part9a").value = "Low";
+                        }else if(count_i >= 5 & count_i <=8){
+                            document.getElementById("p_part9a").value = "Medium";
+                        }else{
+                            document.getElementById("p_part9a").value = "High";
+                        }
+                    }else if(pos_9[n].localeCompare("(j)") == 0){
+                        for(j=0; j< array_p9b.length; j++){
+                            if(temp.indexOf(array_p9b[j].replace(/ /g,'')) >= 0){
+                                count_j++;
+                            }
+                        }   
+                        document.getElementById("part9b").value = count_j;   
+                        if(count_j >= 1 & count_j <= 8){
+                            document.getElementById("p_part9b").value = "Low";
+                        }else if(count_j >= 9 & count_j <=15){
+                            document.getElementById("p_part9b").value = "Medium";
+                        }else{
+                            document.getElementById("p_part9b").value = "High";
+                        }  
+                    }else if(pos_9[n].localeCompare("(k)") == 0){
+                        for(j=0; j< array_p10.length; j++){
+                            if(temp.indexOf(array_p10[j].replace(/ /g,'')) >= 0){
+                                count_k++;
+                            }
+                        }    
+                        document.getElementById("part10").value = count_k;  
+                        if(count_k >= 1 & count_k <= 3){
+                            document.getElementById("p_part10").value = "Low";
+                        }else if(count_k >= 4 & count_k <= 6){
+                            document.getElementById("p_part10").value = "Medium";
+                        }else{
+                            document.getElementById("p_part10").value = "High";
+                        }  
+                    }else if(pos_9[n].localeCompare("(l)") == 0){
+                        for(j=0; j< array_p11.length; j++){
+                            if(temp.indexOf(array_p11[j].replace(/ /g,'')) >= 0){
+                                c_iron++;
+                            }
+                        }  
+                        document.getElementById("iron").value = c_iron;   
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        }   
+                    }else{
+
                     }
                 }
-                console.log("Section 1 - part 8" , countp8);
+                               
             }
 
-            //Array of all elements
-            var all = ["Biotin" , "Calcium" , "Chromium" , "Copper", "EssentialFattyAcids",
-                        "Protein", "Carbohydrates", "FolicAcid", "Iodine" , "Iron" , "Magnesium","Manganese",
-                        "Niacin", "PantothenicAcid(B6)" ,"Potassium", "Pyridoxine(B6)", "Riboflavin",
-                        "Selenium","Thiamin", "VitaminA", "VitaminB-12",  "VitaminC", "CoQ10",
-                        "VitaminD","VitaminE", "VitaminK","Zinc"] ;
             //Array of all the sympots
             var a_biotin =["Dermatitis", "Eye inflammation", "Hair loss", "Loss of muscle control", "Insomnia", "Muscle weakness"];
             var a_cal = ["Brittle nails", "Cramps", "Delusions", "Depression", "Insomnia", "Irritability", 
                         "Osteoporosis", "Palpitations", "Periodontal disease", "Rickets", "Tooth decay"];
             var a_chrom = ["Anxiety", "Fatigue", "Glucose intolerance", "Adult-onset diabetes"];
-            var a_copper = ["Anemia", "Arterial damage", "Depression", "Diarrhea", "Fatigue", "Fragile bones", "Hair Loss", "Hyperthyroidism", "Weakness"];
+            var a_copper = ["Anemia", "Arterial Damage", "Depression", "Diarrhea", "Fatigue", "Fragile Bones", "Hair Loss", "Hyperthyroidism", "Weakness"];
             var a_fatty = ["Diarrhea", "Dry Skin & Hair loss","Hair Loss", "Immune Impairment", "Infertility", 
                             "Poor Wound Healing", "Premenstrual Syndrome", "Acne", "Eczema", "Gall Stones", "Liver Degeneration", 
                             "Headaches when out in the hot sun", "Sunburn easily or suffer sun poisoning"];
-            var a_protein = ["Increased secretion from mouth/nose/eyes", "Swelling in hands and feet", "muscle cramps", 
-                            "Menstrual cramps", "low exercise tolerance", "cold hands and feet", "bleeding gums", "low immunity", 
-                            "fatigue", "muscles more flabby than normal", "hair loss", "splitting hair and nails", "low heart rate", "hypoglycemia"];
+            var a_protein = ["Increased secretion from mouth/nose/eyes", "Swelling in hands and feet", "Muscle cramps", 
+                            "Menstrual cramps", "Low Exercise Tolerance", "Cold hands and feet", "Bleeding Gums", "Low Immunity", 
+                            "Fatigue", "Muscles more flabby than normal", "Hair loss", "Splitting hair and nails", "Low Heart Rate", "Hypoglycemia"];
             var a_carbs = [	"Decreased secretions from mouth/nose/eyes", "Muscle weakness", "Inability to concentrate", 
                             "Easily startled", "Difficulty swallowing", "Voice affected by stress"];
             var a_folic = ["Anemia", "Apathy", "Diarrhea", "Fatigue", "Headaches", "Insomnia", "Loss of Appetite", "Neural Tube Defects in Fetus", 
@@ -222,10 +512,10 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             var a_pyr = ["Acne", "Anemia", "Arthritis", "Eye Inflammation", "Depression", "Dizziness", "Facial Oiliness", "Fatigue", "Impaired Wound Healing", "Irritability", "Loss of Appetite", 
                         "Loss of Hair", "Mouth Lesions", "Nausea"];
             var a_ribo = ["Blurred Vision", "Cataracts", "Depression", "Dermatitis", "Dizziness", "Hair Loss", "Inflamed Eyes","Mouth Lesions", "Nervousness", 
-                         "Neurological Symptoms (Numbness, Loss Of Sensation, \"Electric Shock\" Sensations)", "Seizures", "Sensitivity to Light", "Sleepiness", "Weakness"];
+                         "Neurological Symptoms (Numbness/Loss Of Sensation/\"Electic Shock\" Sensations)", "Seizures", "Sensitivity to Light", "Sleepiness", "Weakness"];
             var a_sel = ["Growth Impairment", "High Cholesterol Levels", "Increased Incidence of Cancer", "Pancreatic Insufficiency (Inability to secrete adequate amounts of digestive enzymes)", 
                         "Immune Impairment", "Liver Impairment", "Male Sterility"];
-            var a_thia = ["Confusion", "Constipation", "Digestive Problems", "Irritability", "Loss of Appetite", "Memory Loss", "Nervousness", "Numbness of Hands & Feet", "Pain Sensitivity", 
+            var a_thia = ["Confusion", "Constipated", "Digestive Problems", "Irritability", "Loss of Appetite", "Memory Loss", "Nervousness", "Numbness of Hands & Feet", "Pain Sensitivity", 
                         "Poor Coordination", "Weakness", "Slow Heart Beat or Rapid Heartbeat", "Enlarged Heart", "Heart Palpitations"];
             var a_vita  = ["Acne", "Dry Hair", "Fatigue", "Growth Impairment", "Insomnia", "Hyperkeratosis (Thickening & roughness of skin)", "Immune Impairment", "Night Blindness", "Weight Loss"];
             var a_vitb12 = ["Anemia", "Constipation", "Depression", "Dizziness", "Fatigue", "Intestinal Disturbances", "Headaches", "Irritability", "Loss of Vibration Sensation", "Low Stomach Acid", "Mental Disturbances", 
@@ -270,13 +560,10 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             var c_zinc = 0;
 
             for(k=0; k<all.length;k++){
-                //console.log(s.indexOf(all[i]));
                 if(s.indexOf(all[k]) >= 0 ){
-                    //console.log("In");
                     array_positive.push(all[k].replace(/ /g,''));
                 }
             }
-           // console.log(array_positive);
             if(array_positive.length > 0){
                 for(n = 0; n<array_positive.length ; n++){
                     
@@ -284,17 +571,20 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                           var index1 = s.indexOf(array_positive[n]);
                           var index2 = s.indexOf(array_positive[n+1]);
                           var temp = s.substring(index1 , index2); 
-                          //console.log(temp);
                     }else{ //last member of array
-                          console.log(array_positive[n]);
                           var index1 = s.indexOf(array_positive[n]);
-                          var index2 = s.indexOf("I."); //Fix this to number when you can 
-                          //console.log(pagesText[i].length);
-                          if(index2 <0){
-                            var temp = s.substring(index1 , pagesText[i].length);
-                          }else{
-                            var temp = s.substring(index1 , index2);
-                          }
+                          var index2;
+                          for( j1 = 0 ; j1 <array_b.length ; j1++){
+                              index2 = s.indexOf(array_b[j1]);
+                            
+                              if(index2 >= 0){
+                                  break;
+                              }
+                            }
+                        if(index2 < 0){
+                            index2 =  pagesText[i].length;
+                        }
+                        var temp = s.substring(index1, index2);
                     }
 
                     if(array_positive[n].localeCompare("Biotin") == 0){
@@ -302,207 +592,384 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             if(temp.indexOf(a_biotin[j].replace(/ /g,'')) >= 0){
                                 c_biotin++;
                             }
-                        }                     
+                        }       
+                        document.getElementById("biotin").value = c_biotin;   
+                        if(c_biotin ==1 ){
+                            document.getElementById("p_biotin").value = "Low";
+                        }else if(c_biotin >= 2 & c_biotin <= 3){
+                            document.getElementById("p_biotin").value = "Medium";
+                        }else{
+                            document.getElementById("p_biotin").value = "High";
+                        }            
                     }else if(array_positive[n].localeCompare("Calcium") == 0){
                         for(j=0; j< a_cal.length; j++){
                             if(temp.indexOf(a_cal[j].replace(/ /g,'')) >= 0){
                                 c_cal++;
                             }
                         }
+                        document.getElementById("calc").value = c_cal;
+                        if(c_cal>= 1 & c_cal <= 3){
+                            document.getElementById("p_calc").value = "Low";
+                        }else if(c_cal >= 4 &c_cal<=5){
+                            document.getElementById("p_calc").value = "Medium";
+                        }else{
+                            document.getElementById("p_calc").value = "High";
+                        }  
                     }else if(array_positive[n].localeCompare("Chromium") == 0){
                         for(j=0; j< a_chrom.length; j++){
                             if(temp.indexOf(a_chrom[j].replace(/ /g,'')) >= 0){
                                 c_chrom++;
                             }
                         }
+                        document.getElementById("chrom").value = c_chrom; 
+                        if(c_chrom == 1){
+                            document.getElementById("p_chrom").value = "Low";
+                        }else if(c_chrom == 2){
+                            document.getElementById("p_chrom").value = "Medium";
+                        }else{
+                            document.getElementById("p_chrom").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Copper") == 0){
                         for(j=0; j< a_copper.length; j++){
                             if(temp.indexOf(a_copper[j].replace(/ /g,'')) >= 0){
                                 c_copper++;
                             }
                         }
+                        document.getElementById("copper").value = c_copper;
+                        if(c_copper >= 1 & c_copper <= 2){
+                            document.getElementById("p_copper").value = "Low";
+                        }else if(c_copper >= 3 & c_copper <= 4){
+                            document.getElementById("p_copper").value = "Medium";
+                        }else{
+                            document.getElementById("p_copper").value = "High";
+                        }  
                     }else if(array_positive[n].localeCompare("EssentialFattyAcids") == 0){
                         for(j=0; j< a_fatty.length; j++){
                             if(temp.indexOf(a_fatty[j].replace(/ /g,'')) >= 0){
                                 c_fatty++;
                             }
                         }
+                        document.getElementById("fattyacid").value = c_fatty; 
+                        if( c_fatty >= 1 &  c_fatty <= 3){
+                            document.getElementById("p_fattyacid").value = "Low";
+                        }else if( c_fatty >= 4 &  c_fatty <= 6){
+                            document.getElementById("p_fattyacid").value = "Medium";
+                        }else{
+                            document.getElementById("p_fattyacid").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Protein") == 0){
                         for(j=0; j< a_protein.length; j++){
                             if(temp.indexOf(a_protein[j].replace(/ /g,'')) >= 0){
                                 c_protein++;
                             }
                         }
+                        document.getElementById("protein").value = c_protein; 
+                        if(c_protein >= 1 & c_protein <= 4){
+                            document.getElementById("p_protein").value = "Low";
+                        }else if(c_protein >= 5 &c_protein<=7){
+                            document.getElementById("p_protein").value = "Medium";
+                        }else{
+                            document.getElementById("p_protein").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Carbohydrates") == 0){
                         for(j=0; j< a_carbs.length; j++){
                             if(temp.indexOf(a_carbs[j].replace(/ /g,'')) >= 0){
                                 c_carbs++;
                             }
                         }
+                        document.getElementById("carbs").value = c_carbs; 
+                        if(c_carbs == 1){
+                            document.getElementById("p_carbs").value = "Low";
+                        }else if(c_carbs >= 2 & c_carbs<=3){
+                            document.getElementById("p_carbs").value = "Medium";
+                        }else{
+                            document.getElementById("p_carbs").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("FolicAcid") == 0){
                         for(j=0; j< a_folic.length; j++){
                             if(temp.indexOf(a_folic[j].replace(/ /g,'')) >= 0){
                                 c_folic++;
                             }
                         }
+                        document.getElementById("folic").value = c_folic; 
+                        if( c_folic >= 1 &  c_folic <= 3){
+                            document.getElementById("p_folic").value = "Low";
+                        }else if( c_folic >= 4 &  c_folic <= 5){
+                            document.getElementById("p_folic").value = "Medium";
+                        }else{
+                            document.getElementById("p_folic").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Iodine") == 0){
                         for(j=0; j< a_ion.length; j++){
                             if(temp.indexOf(a_ion[j].replace(/ /g,'')) >= 0){
                                 c_ion++;
                             }
                         }
+                        document.getElementById("iodine").value = c_ion; 
+                        if(c_ion == 1){
+                            document.getElementById("p_iodine").value = "Low";
+                        }else if(c_ion == 2){
+                            document.getElementById("p_iodine").value = "Medium";
+                        }else{
+                            document.getElementById("p_iodine").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Iron") == 0){
                         for(j=0; j< a_iron.length; j++){
                             if(temp.indexOf(a_iron[j].replace(/ /g,'')) >= 0){
                                 c_iron++;
                             }
                         }
+                        document.getElementById("iron").value = c_iron; 
+                        if(c_iron >= 1 & c_iron <= 2){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 3 & c_iron <= 5){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Magnesium") == 0){
                         for(j=0; j< a_mag.length; j++){
                             if(temp.indexOf(a_mag[j].replace(/ /g,'')) >= 0){
                                 c_mag++;
                             }
                         }
+                        document.getElementById("mag").value = c_mag; 
+                        if(c_mag >= 1 & c_mag <= 2){
+                            document.getElementById("p_mag").value = "Low";
+                        }else if(c_mag >= 3 & c_mag <= 5){
+                            document.getElementById("p_mag").value = "Medium";
+                        }else{
+                            document.getElementById("p_mag").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Manganese") == 0){
                         for(j=0; j< a_man.length; j++){
                             if(temp.indexOf(a_man[j].replace(/ /g,'')) >= 0){
                                 c_man++;
                             }
                         }
+                        document.getElementById("mana").value = c_man; 
+                        if(c_man == 1){
+                            document.getElementById("p_mana").value = "Low";
+                        }else if(c_man >= 2 & c_man <= 3){
+                            document.getElementById("p_mana").value = "Medium";
+                        }else{
+                            document.getElementById("p_mana").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Niacin") == 0){
                         for(j=0; j< a_nia.length; j++){
                             if(temp.indexOf(a_nia[j].replace(/ /g,'')) >= 0){
                                 c_nia++;
                             }
                         }
+                        document.getElementById("nia").value = c_nia;  
+                        if(c_nia >= 1 & c_nia <= 4){
+                            document.getElementById("p_nia").value = "Low";
+                        }else if(c_nia >= 5 & c_nia <= 8){
+                            document.getElementById("p_nia").value = "Medium";
+                        }else{
+                            document.getElementById("p_nia").value = "High";
+                        }                      
                     }else if(array_positive[n].localeCompare("PantothenicAcid(B6)") == 0){
                         for(j=0; j< a_acid.length; j++){
                             if(temp.indexOf(a_acid[j].replace(/ /g,'')) >= 0){
                                 c_acid++;
                             }
                         }
+                        document.getElementById("pana").value = c_acid; 
+                        if(c_acid >= 1 & c_acid <= 3){
+                            document.getElementById("p_pana").value = "Low";
+                        }else if(c_acid>= 4 & c_acid<= 6){
+                            document.getElementById("p_pana").value = "Medium";
+                        }else{
+                            document.getElementById("p_pana").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Potassium") == 0){
                         for(j=0; j< a_pot.length; j++){
                             if(temp.indexOf(a_pot[j].replace(/ /g,'')) >= 0){
                                 c_pot++;
                             }
                         }
+                        document.getElementById("pot").value = c_pot; 
+                        if(c_pot >= 1 & c_pot <= 4){
+                            document.getElementById("p_pot").value = "Low";
+                        }else if(c_pot >= 5 & c_pot <= 7){
+                            document.getElementById("p_pot").value = "Medium";
+                        }else{
+                            document.getElementById("p_pot").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Pyridoxine(B6)") == 0){
                         for(j=0; j< a_pyr.length; j++){
                             if(temp.indexOf(a_pyr[j].replace(/ /g,'')) >= 0){
                                 c_pyr++;
                             }
                         }
+                        document.getElementById("b6").value = c_pyr; 
+                        if(c_pyr >= 1 & c_pyr <= 4){
+                            document.getElementById("p_b6").value = "Low";
+                        }else if(c_pyr >= 5 & c_pyr <= 7){
+                            document.getElementById("p_b6").value = "Medium";
+                        }else{
+                            document.getElementById("p_b6").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Riboflavin") == 0){
                         for(j=0; j< a_ribo.length; j++){
                             if(temp.indexOf(a_ribo[j].replace(/ /g,'')) >= 0){
                                 c_ribo++;
                             }
                         }
+                        document.getElementById("ribo").value = c_ribo; 
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("Selenium") == 0){
                         for(j=0; j< a_sel.length; j++){
                             if(temp.indexOf(a_sel[j].replace(/ /g,'')) >= 0){
                                 c_Sel++;
                             }
                         }
-                    }else if(array_positive[n].localeCompare("Selenium") == 0){
-                        for(j=0; j< a_sel.length; j++){
-                            if(temp.indexOf(a_sel[j].replace(/ /g,'')) >= 0){
-                                c_Sel++;
-                            }
-                        }
+                        document.getElementById("sel").value = c_Sel;
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        }  
                     }else if(array_positive[n].localeCompare("Thiamin") == 0){
                         for(j=0; j< a_thia.length; j++){
                             if(temp.indexOf(a_thia[j].replace(/ /g,'')) >= 0){
                                 c_thia++;
                             }
                         }
+                        document.getElementById("thia").value = c_thia; 
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("VitaminA") == 0){
                         for(j=0; j< a_vita.length; j++){
                             if(temp.indexOf(a_vita[j].replace(/ /g,'')) >= 0){
                                 c_vita++;
                             }
                         }
+                        document.getElementById("vita").value = c_vita; 
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("VitaminB-12") == 0){
                         for(j=0; j< a_vitb12.length; j++){
                             if(temp.indexOf(a_vitb12[j].replace(/ /g,'')) >= 0){
                                 c_vitb12++;
                             }
                         }
+                        document.getElementById("vitb12").value = c_vitb12; 
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("VitaminC") == 0){
                         for(j=0; j< a_vitc.length; j++){
                             if(temp.indexOf(a_vitc[j].replace(/ /g,'')) >= 0){
                                 c_vitc++;
                             }
                         }
+                        document.getElementById("vitc").value = c_vitc; 
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("CoQ10") == 0){
                         for(j=0; j< a_coq.length; j++){
                             if(temp.indexOf(a_coq[j].replace(/ /g,'')) >= 0){
                                 c_coq++;
                             }
                         }
+                        document.getElementById("coq").value = c_coq;
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        }  
                     }else if(array_positive[n].localeCompare("VitaminD") == 0){
                         for(j=0; j< a_vitd.length; j++){
                             if(temp.indexOf(a_vitd[j].replace(/ /g,'')) >= 0){
                                 c_vitd++;
                             }
                         }
+                        document.getElementById("vitd").value = c_vitd; 
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("VitaminE") == 0){
                         for(j=0; j< a_vite.length; j++){
                             if(temp.indexOf(a_vite[j].replace(/ /g,'')) >= 0){
                                 c_vite++;
                             }
                         }
+                        document.getElementById("vite").value = c_vite;
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        } 
                     }else if(array_positive[n].localeCompare("VitaminK") == 0){
                         for(j=0; j< a_vitk.length; j++){
                             if(temp.indexOf(a_vitk[j].replace(/ /g,'')) >= 0){
                                 c_vitk++;
                             }
                         }
+                        document.getElementById("vitk").value = c_vitk; 
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        } 
                     }
                     else{
-                        //console.log("Here");
                         for(j=0; j< a_zinc.length; j++){
                             if(temp.indexOf(a_zinc[j].replace(/ /g,'')) >= 0){
                                 c_zinc++;
                             }
                         }
-                    }
-
-                    
-                
+                        document.getElementById("zinc").value = c_zinc; 
+                        if(c_iron >= 1 & c_iron <= 9){
+                            document.getElementById("p_iron").value = "Low";
+                        }else if(c_iron >= 10 & c_iron <=17){
+                            document.getElementById("p_iron").value = "Medium";
+                        }else{
+                            document.getElementById("p_iron").value = "High";
+                        } 
+                    }               
                 }
-              console.log("Biotin" , c_biotin);  
-              console.log("Calcium" , c_cal);  
-              console.log("Chromium", c_chrom);    
-              console.log("Copper", c_copper);   
-              console.log("Essential fatty acid", c_fatty);   
-              console.log("Protein", c_protein);  
-              console.log("Carbs", c_carbs);
-              console.log("Folic Acid", c_folic);
-              console.log("Iodine", c_ion);
-              console.log("Iron", c_iron);
-              console.log("Magnesium" , c_mag);
-              console.log("Manganese" , c_man);
-              console.log("Niacin" , c_nia);
-              console.log("Pantothenic Acid(B6)", c_acid);
-              console.log("Potassium", c_pot);
-              console.log("Pyridoxine (B6)", c_pyr);
-              console.log("Riboflavin", c_ribo);
-              console.log("Selenium", c_Sel);
-              console.log("Thiamin" , c_thia);
-              console.log("Vitamin A" , c_vita);
-              console.log("Vitamin B-12" , c_vitb12);
-              console.log("Vitamin C" , c_vitc);
-              console.log("CoQ10" , c_coq);
-              console.log("Vitamin D" , c_vitd);
-              console.log("Vitamin E" , c_vite);
-              console.log("Vitamin K" , c_vitk);
-              console.log("Zinc" , c_zinc);
-            }
+           }
 
-            array_b = ["I." , "II." , "III." , "IV.","V.","VI.","VII.","VIII","IX","X.","XI.","XII."];
-            
             a_i = ["Belching or gas within one hour after eating" , "Heartburn or acid reflux", "Bad breath", "Bloated within one hour after eating", "Loss of taste for meat",
                    "Sweat has strong odor", "Stomach upset by taking vitamins", "Feel like skipping breakfast", "Sleepy after meals", "Feel better if you do not eat", 
                    "Fingernails chip, peel or break easily" ,  "Anemia unresponsive to iron", "Stomach pains or cramps", "Chronic Diarrhea", "Diarrhea shortly after meals",
@@ -548,6 +1015,20 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             a_xii = ["Runny or drippy nose",  "Catch colds at the beginning of winter",  "Adult acne" , "Itchy skin",  "Cysts, boils, rashes",  "History of Epstein Bar",  "Frequent colds or flu",
                       "Frequent infections",  "Mucous-producing cough",  "History of Mono, Herpes",  "History of Shingles, Chronic fatigue, Hepatitis or other chronic viral condition"];
             b_pos = [];
+
+            var c_i = 0;
+            var c_ii = 0;
+            var c_iii = 0;
+            var c_iv = 0;
+            var c_v = 0;
+            var c_vi = 0;
+            var c_vii = 0;
+            var c_viii = 0;
+            var c_ix = 0;
+            var c_x = 0;
+            var c_xi = 0;
+            var c_xii = 0;
+
             for(k=0;k<array_b.length;k++){
                 if(s.indexOf(array_b[k]) >= 0){
                     b_pos.push(array_b[k].replace(/ /g,''));
@@ -555,10 +1036,197 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             }
 
             if(b_pos.length > 0){
+                for(x = 0 ; x < b_pos.length ; x++){
 
-            }
-            console.log(b_pos);
-              
+                    if(x < (b_pos.length - 1)){
+                        var index1 = s.indexOf(b_pos[x]);
+                        var index2 = s.indexOf(b_pos[x+1]);
+                        if(index2 - index1 > 1){
+                            var temp = s.substring(index1 , index2); 
+                        }else{
+                            index2 = s.lastIndexOf(b_pos[x+1]);
+                            var temp = s.substring(index1 , index2); 
+                        }
+                    }else{ //last member of array
+                        var index1 = s.indexOf(b_pos[x]);
+                        var index2 = s.indexOf("List"); 
+                        if(index2 <0){
+                          var temp = s.substring(index1 , pagesText[i].length);
+                        }else{
+                          var temp = s.substring(index1 , index2);
+                        }
+                    }
+                    if(b_pos[x].localeCompare("I.") == 0){
+                        for(j=0; j< a_i.length; j++){
+                            if(temp.indexOf(a_i[j].replace(/ /g,'')) >= 0){
+                                c_i++;
+                            }
+                        } 
+                        document.getElementById("i").value = c_i; 
+                        if(c_i >= 1 & c_i <= 4){
+                            document.getElementById("p_i").value = "Low";
+                        }else if(c_i >= 5 & c_i <=8){
+                            document.getElementById("p_i").value = "Medium";
+                        }else{
+                            document.getElementById("p_i").value = "High";
+                        } 
+                    }else if(b_pos[x].localeCompare("II.") == 0){
+                        for(j=0; j< a_ii.length; j++){
+                            if(temp.indexOf(a_ii[j].replace(/ /g,'')) >= 0){
+                                c_ii++;
+                            }
+                        }
+                        document.getElementById("ii").value = c_ii;
+                        if(c_ii >= 1 & c_ii  <= 6){
+                            document.getElementById("p_ii").value = "Low";
+                        }else if(c_ii  >= 7 & c_ii  <=12){
+                            document.getElementById("p_ii").value = "Medium";
+                        }else{
+                            document.getElementById("p_ii").value = "High";
+                        }  
+                    }else if(b_pos[x].localeCompare("III.") == 0){
+                        for(j=0; j< a_iii.length; j++){
+                            if(temp.indexOf(a_iii[j].replace(/ /g,'')) >= 0){
+                                c_iii++;
+                            }
+                        }
+                        document.getElementById("iii").value = c_iii; 
+                        if(c_iii >= 1 & c_iii <= 4){
+                            document.getElementById("p_iii").value = "Low";
+                        }else if(c_iii >= 5 & c_iii <=8){
+                            document.getElementById("p_iii").value = "Medium";
+                        }else{
+                            document.getElementById("p_iii").value = "High";
+                        } 
+                    }else if(b_pos[x].localeCompare("IV.") == 0){
+                        for(j=0; j< a_iv.length; j++){
+                            if(temp.indexOf(a_iv[j].replace(/ /g,'')) >= 0){
+                                c_iv++;
+                            }
+                        }
+                        document.getElementById("iv").value = c_iv; 
+                        if(c_iv >= 1 & c_iv <= 4){
+                            document.getElementById("p_iv").value = "Low";
+                        }else if(c_iv >= 4 &c_iv <=7){ //Larry
+                            document.getElementById("p_iv").value = "Medium";
+                        }else{
+                            document.getElementById("p_iv").value = "High";
+                        } 
+                    }else if(b_pos[x].localeCompare("V.") == 0){
+                        for(j=0; j< a_v.length; j++){
+                            if(temp.indexOf(a_v[j].replace(/ /g,'')) >= 0){
+                                c_v++;
+                            }
+                        }
+                        document.getElementById("v").value = c_v; 
+                        if(c_v >= 1 & c_v <= 3){
+                            document.getElementById("p_v").value = "Low";
+                        }else if(c_v >= 4 & c_v <=6){
+                            document.getElementById("p_v").value = "Medium";
+                        }else{
+                            document.getElementById("p_v").value = "High";
+                        } 
+                    }else if(b_pos[x].localeCompare("VI.") == 0){
+                        for(j=0; j< a_vi.length; j++){
+                            if(temp.indexOf(a_vi[j].replace(/ /g,'')) >= 0){
+                                c_vi++;
+                            }
+                        }
+                        document.getElementById("vi").value = c_vi; 
+                        if(c_vi >= 1 & c_vi <= 6){
+                            document.getElementById("p_vi").value = "Low";
+                        }else if(c_vi >= 7 & c_vi <=13){
+                            document.getElementById("p_vi").value = "Medium";
+                        }else{
+                            document.getElementById("p_vi").value = "High";
+                        } 
+                    }else if(b_pos[x].localeCompare("VII.") == 0){
+                        for(j=0; j< a_vii.length; j++){
+                            if(temp.indexOf(a_vii[j].replace(/ /g,'')) >= 0){
+                                c_vii++;
+                            }
+                        }
+                        document.getElementById("vii").value = c_vii; 
+                        if(c_vii>= 1 & c_vii <= 4){
+                            document.getElementById("p_vii").value = "Low";
+                        }else if(c_vii >= 5 & c_vii <= 8){
+                            document.getElementById("p_vii").value = "Medium";
+                        }else{
+                            document.getElementById("p_vii").value = "High";
+                        } 
+                    }else if(b_pos[x].localeCompare("VIII") == 0){
+                        for(j=0; j< a_viii.length; j++){
+                            if(temp.indexOf(a_viii[j].replace(/ /g,'')) >= 0){
+                                c_viii++;
+                            }
+                        }
+                        document.getElementById("viii").value = c_viii; 
+                        if(c_viii >= 1 & c_viii <= 2){
+                            document.getElementById("p_viii").value = "Low";
+                        }else if(c_viii >= 3 & c_viii <= 4){
+                            document.getElementById("p_viii").value = "Medium";
+                        }else{
+                            document.getElementById("p_viii").value = "High";
+                        } 
+                    }else if(b_pos[x].localeCompare("IX") == 0){
+                        for(j=0; j< a_ix.length; j++){
+                            if(temp.indexOf(a_ix[j].replace(/ /g,'')) >= 0){
+                                c_ix++;
+                            }
+                        }
+                        document.getElementById("ix").value = c_ix; 
+                        if(c_ix >= 1 & c_ix <= 5){
+                            document.getElementById("p_ix").value = "Low";
+                        }else if(c_ix >= 6 & c_ix <=10){
+                            document.getElementById("p_ix").value = "Medium";
+                        }else{
+                            document.getElementById("p_ix").value = "High";
+                        } 
+                    }else if(b_pos[x].localeCompare("X.") == 0){
+                        for(j=0; j< a_x.length; j++){
+                            if(temp.indexOf(a_x[j].replace(/ /g,'')) >= 0){
+                                c_x++;
+                            }
+                        }
+                        document.getElementById("x").value = c_x; 
+                        if(c_x>= 1 & c_x <= 3){
+                            document.getElementById("p_x").value = "Low";
+                        }else if(c_x >= 4 & c_x <= 6){
+                            document.getElementById("p_x").value = "Medium";
+                        }else{
+                            document.getElementById("p_x").value = "High";
+                        } 
+                    }else if(b_pos[x].localeCompare("XI.") == 0){
+                        for(j=0; j< a_xi.length; j++){
+                            if(temp.indexOf(a_xi[j].replace(/ /g,'')) >= 0){
+                                c_xi++;
+                            }
+                        }
+                        document.getElementById("xi").value = c_xi; 
+                        if(c_xi ==1){
+                            document.getElementById("p_xi").value = "Low";
+                        }else if(c_xi = 2){
+                            document.getElementById("p_xi").value = "Medium";
+                        }else{
+                            document.getElementById("p_xi").value = "High";
+                        } 
+                    }else{
+                        for(j=0; j< a_xii.length; j++){
+                            if(temp.indexOf(a_xii[j].replace(/ /g,'')) >= 0){
+                                c_xii++;
+                            }
+                        }
+                        document.getElementById("xii").value = c_xii; 
+                        if(c_xii >= 1 & c_xii <= 3){
+                            document.getElementById("p_xii").value = "Low";
+                        }else if(c_xii >= 4 & c_xii <= 5){
+                            document.getElementById("p_xii").value = "Medium";
+                        }else{
+                            document.getElementById("p_xii").value = "High";
+                        } 
+                    }
+                }
+            } 
         }
     });
 
@@ -568,3 +1236,4 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
     console.error(reason);
     
 });
+}
