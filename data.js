@@ -818,12 +818,12 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             }
                         }
                         document.getElementById("ribo").value = c_ribo; 
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        if(c_ribo >= 1 & c_ribo <= 4){
+                            document.getElementById("p_ribo").value = "Low";
+                        }else if(c_ribo >= 5 & c_ribo <= 8){
+                            document.getElementById("p_ribo").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_ribo").value = "High";
                         } 
                     }else if(array_positive[n].localeCompare("Selenium") == 0){
                         for(j=0; j< a_sel.length; j++){
@@ -832,12 +832,12 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             }
                         }
                         document.getElementById("sel").value = c_Sel;
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        if(c_Sel == 1){
+                            document.getElementById("p_sel").value = "Low";
+                        }else if(c_Sel >= 2 & c_Sel <= 3){
+                            document.getElementById("p_sel").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_sel").value = "High";
                         }  
                     }else if(array_positive[n].localeCompare("Thiamin") == 0){
                         for(j=0; j< a_thia.length; j++){
@@ -846,12 +846,12 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             }
                         }
                         document.getElementById("thia").value = c_thia; 
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        if(c_thia >= 1 & c_thia <= 3){
+                            document.getElementById("p_thia").value = "Low";
+                        }else if(c_thia >= 4 & c_thia <= 7){
+                            document.getElementById("p_thia").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_thia").value = "High";
                         } 
                     }else if(array_positive[n].localeCompare("VitaminA") == 0){
                         for(j=0; j< a_vita.length; j++){
@@ -860,12 +860,12 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             }
                         }
                         document.getElementById("vita").value = c_vita; 
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        if(c_vita >= 1 & c_vita <= 2){
+                            document.getElementById("p_vita").value = "Low";
+                        }else if(c_vita >= 3 & c_vita <= 4){
+                            document.getElementById("p_vita").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_vita").value = "High";
                         } 
                     }else if(array_positive[n].localeCompare("VitaminB-12") == 0){
                         for(j=0; j< a_vitb12.length; j++){
@@ -874,12 +874,12 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             }
                         }
                         document.getElementById("vitb12").value = c_vitb12; 
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        if(c_vitb12 >= 1 & c_vitb12<= 4){
+                            document.getElementById("p_vitb12").value = "Low";
+                        }else if(c_vitb12>= 5 & c_vitb12 <= 7){
+                            document.getElementById("p_vitb12").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_vitb12").value = "High";
                         } 
                     }else if(array_positive[n].localeCompare("VitaminC") == 0){
                         for(j=0; j< a_vitc.length; j++){
@@ -888,12 +888,12 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             }
                         }
                         document.getElementById("vitc").value = c_vitc; 
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        if(c_vitc >= 1 & c_vitc<= 2){
+                            document.getElementById("p_vitc").value = "Low";
+                        }else if(c_vitc>= 3 & c_vitc <= 4){
+                            document.getElementById("p_vitc").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_vitc").value = "High";
                         } 
                     }else if(array_positive[n].localeCompare("CoQ10") == 0){
                         for(j=0; j< a_coq.length; j++){
@@ -901,13 +901,13 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                                 c_coq++;
                             }
                         }
-                        document.getElementById("coq").value = c_coq;
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        document.getElementById("coq").value = c_coq; //Larry
+                        if(c_coq >= 1 & c_coq <= 4){
+                            document.getElementById("p_coq").value = "Low";
+                        }else if(c_coq >= 5 & c_coq <= 9){
+                            document.getElementById("p_coq").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_coq").value = "High";
                         }  
                     }else if(array_positive[n].localeCompare("VitaminD") == 0){
                         for(j=0; j< a_vitd.length; j++){
@@ -916,12 +916,12 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             }
                         }
                         document.getElementById("vitd").value = c_vitd; 
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        if(c_vitd >= 1 & c_vitd <= 2){
+                            document.getElementById("p_vitd").value = "Low";
+                        }else if(c_vitd >= 3 & c_vitd <= 5){
+                            document.getElementById("p_vitd").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_vitd").value = "High";
                         } 
                     }else if(array_positive[n].localeCompare("VitaminE") == 0){
                         for(j=0; j< a_vite.length; j++){
@@ -930,12 +930,12 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             }
                         }
                         document.getElementById("vite").value = c_vite;
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        if(c_vite == 1){
+                            document.getElementById("p_vite").value = "Low";
+                        }else if(c_vite == 2){
+                            document.getElementById("p_vite").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_vite").value = "High";
                         } 
                     }else if(array_positive[n].localeCompare("VitaminK") == 0){
                         for(j=0; j< a_vitk.length; j++){
@@ -943,14 +943,14 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                                 c_vitk++;
                             }
                         }
-                        document.getElementById("vitk").value = c_vitk; 
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        document.getElementById("vitk").value = c_vite;
+                        if(c_vitk == 1){
+                            document.getElementById("p_vitk").value = "Low";
+                        }else if(c_vitk == 2){
+                            document.getElementById("p_vitk").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
-                        } 
+                            document.getElementById("p_vitk").value = "High";
+                        }
                     }
                     else{
                         for(j=0; j< a_zinc.length; j++){
@@ -959,12 +959,12 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             }
                         }
                         document.getElementById("zinc").value = c_zinc; 
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        if(c_zinc >= 1 & c_zinc<= 7){
+                            document.getElementById("p_zinc").value = "Low";
+                        }else if(c_zinc >= 8 & c_zinc <=13){
+                            document.getElementById("p_zinc").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_zinc").value = "High";
                         } 
                     }               
                 }
@@ -1107,7 +1107,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                         document.getElementById("iv").value = c_iv; 
                         if(c_iv >= 1 & c_iv <= 4){
                             document.getElementById("p_iv").value = "Low";
-                        }else if(c_iv >= 4 &c_iv <=7){ //Larry
+                        }else if(c_iv >= 5 &c_iv <=7){ //Larry
                             document.getElementById("p_iv").value = "Medium";
                         }else{
                             document.getElementById("p_iv").value = "High";

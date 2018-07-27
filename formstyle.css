@@ -34,7 +34,7 @@ input[type=textbox]{
     margin-right:45%;
     
 }
-#button_a , #button_print{
+#button_a , #button_print , #print-pdf{
   display: inline-block;
   cursor: pointer;
   text-align: center;
@@ -46,6 +46,9 @@ input[type=textbox]{
   border-radius: 8px;
   box-shadow: 0 1px #999;
   padding: 9px 20px;
+}
+#button_print{
+    margin-bottom: 1%;
 }
 thead {
     background-color: rgb(27, 87, 2);

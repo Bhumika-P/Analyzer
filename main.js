@@ -7,6 +7,10 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
+const fs = require('fs');
+const os = require('os');
+const ipc = electron.ipcMain;
+const shell = electron.shell;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -17,7 +21,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
-    pathname: path.join(__dirname, '/app/index.html'),
+    pathname: path.join(__dirname, '/index.html'),
     protocol: 'file:',
     slashes: true
   }))
@@ -58,3 +62,32 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+ipc.on('print-to-pdf' , function(event){/*
+  for (var i = 0; i < 10; i++) {
+      var s ="";
+      var temp = path.join(os.homedir + 'analyzer.pdf');
+      if (fs.exists(temp) == true) {         
+        //console.log('/public/images/flags/' + imgfile + ".png"); 
+        console.log('fs exists');		  
+        s = 'analyzer_0.pdf';
+      } else {
+      console.log('Not Found!');   
+       s = 'analyzer.pdf';
+      }		       
+    }*/
+  const pdfPath = path.join(os.homedir() , 'analyze.pdf');
+ // const pdfPath = "Desktop/print.pdf"; 
+ console.log(pdfPath);
+  const win = BrowserWindow.fromWebContents(event.sender);
+
+  win.webContents.printToPDF({} , function(error,data){
+    if(error) return console.log(error.message);
+
+    fs.writeFile(pdfPath , data , function(err){
+      if(err) return console.log(err.message);
+      shell.openExternal('file://' + pdfPath);
+      event.sender.send('wrote-pdf' , pdfPath);
+    })
+  })
+});
