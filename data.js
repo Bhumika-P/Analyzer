@@ -12,7 +12,7 @@ PDFJS.workerSrc = 'pdf.worker.js';
         PDFDocumentInstance.getPage(pageNum).then(function (pdfPage) {
             // The main trick to obtain the text of the PDF page, use the getTextContent method
             pdfPage.getTextContent().then(function (textContent) {
-                var textItems = textContent.items;
+                var textItems= textContent.items;
                 var finalString = "";
 
                 // Concatenate the string of the item to the final string
@@ -37,7 +37,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
     var pdfDocument = pdf;
     // Create an array that will contain our promises 
     var pagesPromises = [];
-    console.log(pdf.pdfInfo.numPages);
+    //console.log(pdf.pdfInfo.numPages);
     for (var i = 0; i < pdf.pdfInfo.numPages; i++) {
         // Required to prevent that i is always the total of pages
         (function (pageNumber) {
@@ -51,8 +51,13 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
 
         // Display text of all the pages in the console
         // e.g ["Text content page 1", "Text content page 2", "Text content page 3" ... ]
-        for(i = 0; i <pagesText.length;i++){
-            var s = pagesText[i];
+        var str = [];
+        for(i = 0 ; i<pagesText.length ; i++){
+            str= str.concat(pagesText[i]);
+        }
+        var st = str.toString();
+        //for(i = 0; i <pagesText.length;i++){
+            //var s = pagesText[i];
             //Array of all elements
             var info = ["Name" , "Gender" , "Age" , "Contact Number" , "Height","Weight",  "BMI" , "Address","Color of Eyes" , "Email"];
             var section1 = ["(a)" , "(b)" , "(c)" , "(d)" , "(e)", "(f)", "(g)", "(h)"];
@@ -65,30 +70,32 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             array_b = ["I." , "II." , "III." , "IV.","V.","VI.","VII.","VIII","IX","X.","XI.","XII."];
             var p_info = [];
             for(j = 0 ; j < info.length ; j++){
-                if(s.indexOf(info[j]) >=0 ){
+                if(st.indexOf(info[j]) >=0 ){
                     p_info.push(info[j]);
                 }
             }
-
+            //console.log(i);
+            console.log(p_info);
+            
             if(p_info.length > 0){
                 for(j = 0 ; j < p_info.length;j++){
                     if(j < p_info.length - 1){
-                        var index1 = s.indexOf(p_info[j]);
-                        var index2 = s.indexOf(p_info[j+1]);
-                        var temp = s.substring(index1 , index2); 
+                        var index1 = st.indexOf(p_info[j]);
+                        var index2 = st.indexOf(p_info[j+1]);
+                        var temp = st.substring(index1 , index2); 
                         
                     }else{ //last member of array
-                        var index1 = s.indexOf(p_info[j]);
+                        var index1 = st.indexOf(p_info[j]);
                         var index2;
                         for(j1 = 0; j1 < section1.length ; j1++){
-                            index2 = s.indexOf(section1[j1]);
+                            index2 = st.indexOf(section1[j1]);
                             if(index2 >= 0){
                                 break;
                             }
                         }
                         if(index2 < 0){
                             for(j1 = 0; j1 < s1_p9.length ; j1++){
-                                index2 = s.indexOf(s1_p9[j1]);
+                                index2 = st.indexOf(s1_p9[j1]);
                                 
                                 if(index2 >= 0){
                                     break;
@@ -97,7 +104,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                         }
                         if(index2 < 0){
                             for(j1 = 0; j1 < all.length ; j1++){
-                                index2 = s.indexOf(all[j1]);
+                                index2 = st.indexOf(all[j1]);
                                 
                                 if(index2 >= 0){
                                     break;
@@ -106,7 +113,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                         }
                         if(index2 < 0){
                           for( j1 = 0 ; j1 <array_b.length ; j1++){
-                              index2 = s.indexOf(array_b[j1]);
+                              index2 = st.indexOf(array_b[j1]);
                             
                               if(index2 >= 0){
                                   break;
@@ -118,7 +125,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             index2 =  pagesText[i].length;
                         }
 
-                        var temp = s.substring(index1, index2);
+                        var temp = st.substring(index1, index2);
                     }
                     if(p_info[j].localeCompare("Name") == 0){
                         document.getElementById("name").value = temp.replace("Name" , "");
@@ -150,24 +157,24 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                 
             }
             // Section I 
-            s = pagesText[i].replace(/ /g,'')
+            var s = st.toString().replace(/ /g,'');
             
             var array_p1= ["Fear" , "Anger" , "Bitterness" , "Grief", "Gossip", "Helplessness", "Hopelessness",
                             "Guilt", "Betrayal", "Envy" , "Jealousy","Insecurity","Impatient","Arrogance",
                             "Pride", "Hatred", "Rage", "Resentment", "Revenge", "Shame", "Sorrow", "Regret",
                             "Passivity", "Slander", "Possessiveness", "Rebellion", " Unforgiveness", "Gambling",
                             "Addictions" , "Other"];
-            var array_p2 = ["Always Indoors", " DO not regularly change home filter", "Home has mold", "Home has an air ionizer",
+            var array_p2 = ["Always Indoors", " Do not regularly change home air filter", "Home has mold", "Home has an air ionizer",
                             "Have plenty of green plants in my living space", "Practice deep breathing exercises regularly, especially outdoors",
                             " I live away from city smog", " Dizziness", "Headaches", " WateryEyes", "Sneezing", "Cough Regularly",
-                            "Fatigue", "Smoke cigarettes regularly"];
+                            "Fatigue", "Smoke cigarettes regulary"];
             var array_p3 = ["Dry mouth, dry eyes, dry nasal membranes", "Dry or leathery skin", "Dry or chapped lips",
                             "Stools hard & Dry", "Low volume of urine, urinate infrequently", "Dark urine (dark yellow or orange)",
                             "Poor skin turgor (loss of elasticity of skin)" , "Headaches", "Leg and arm cramps", "Weakness",
                             "Drink less than eight 8 ounce glasses of water daily" ];
             var array_p4 = ["Depression", "Poor Bone Health" , "Low Vitamin D levels", "Outdoors at least 30 minutes a day"];
             var array_p5 = ["Headaches","Nausea","Brain fog","Sleep disorders", "Loss of memory", "Sensitive skin", "Dizziness", 
-                            "Burning sensation", "Rash", "Vision problems", "Chest pains" , "Swollen lymph nodes", "Live near electric towers",
+                            "Burning sensation", "Rash", "Vision problems", "Chest pains" , "Swollen lymph nodes", "Live near electrical towers",
                             "Teeth & jaw pain", "Constantly having cellphone to the ears","On computer more than six hours","Aching muscles",
                             "Fatigue","Bouts of unexplained fear or anxiety", "Tingling or prickly sensation across face or other parts of body",
                             "Feeling of impeding influenza but never quite breaks out"];
@@ -209,7 +216,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             var count_i = 0;
             var count_j = 0;
             var count_k = 0;
-            var c_iron = 0;
+            var count_l = 0;
             
             for(k=0; k<section1.length;k++){
                 if(s.indexOf(section1[k]) >= 0 ){
@@ -465,16 +472,16 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                     }else if(pos_9[n].localeCompare("(l)") == 0){
                         for(j=0; j< array_p11.length; j++){
                             if(temp.indexOf(array_p11[j].replace(/ /g,'')) >= 0){
-                                c_iron++;
+                                count_l++;
                             }
                         }  
-                        document.getElementById("iron").value = c_iron;   
-                        if(c_iron >= 1 & c_iron <= 9){
-                            document.getElementById("p_iron").value = "Low";
-                        }else if(c_iron >= 10 & c_iron <=17){
-                            document.getElementById("p_iron").value = "Medium";
+                        document.getElementById("part11").value = count_l;   
+                        if( count_l >= 1 &  count_l <= 9){
+                            document.getElementById("p_part11").value = "Low";
+                        }else if( count_l >= 10 &  count_l <=17){
+                            document.getElementById("p_part11").value = "Medium";
                         }else{
-                            document.getElementById("p_iron").value = "High";
+                            document.getElementById("p_part11").value = "High";
                         }   
                     }else{
 
@@ -489,22 +496,22 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                         "Osteoporosis", "Palpitations", "Periodontal disease", "Rickets", "Tooth decay"];
             var a_chrom = ["Anxiety", "Fatigue", "Glucose intolerance", "Adult-onset diabetes"];
             var a_copper = ["Anemia", "Arterial Damage", "Depression", "Diarrhea", "Fatigue", "Fragile Bones", "Hair Loss", "Hyperthyroidism", "Weakness"];
-            var a_fatty = ["Diarrhea", "Dry Skin & Hair loss","Hair Loss", "Immune Impairment", "Infertility", 
+            var a_fatty = ["Diarrhea", "Dry Skin & Hair Loss","Hair Loss", "Immune Impairment", "Infertility", 
                             "Poor Wound Healing", "Premenstrual Syndrome", "Acne", "Eczema", "Gall Stones", "Liver Degeneration", 
-                            "Headaches when out in the hot sun", "Sunburn easily or suffer sun poisoning"];
-            var a_protein = ["Increased secretion from mouth/nose/eyes", "Swelling in hands and feet", "Muscle cramps", 
+                            "Headaches when out in the hot sun", "Sunburn easily or suffer sun poisening"];
+            var a_protein = ["Increased secretion from mouth/nose/eyes.", "Swelling in hands and feet", "Muscle cramps", 
                             "Menstrual cramps", "Low Exercise Tolerance", "Cold hands and feet", "Bleeding Gums", "Low Immunity", 
                             "Fatigue", "Muscles more flabby than normal", "Hair loss", "Splitting hair and nails", "Low Heart Rate", "Hypoglycemia"];
             var a_carbs = [	"Decreased secretions from mouth/nose/eyes", "Muscle weakness", "Inability to concentrate", 
                             "Easily startled", "Difficulty swallowing", "Voice affected by stress"];
             var a_folic = ["Anemia", "Apathy", "Diarrhea", "Fatigue", "Headaches", "Insomnia", "Loss of Appetite", "Neural Tube Defects in Fetus", 
-                            "Paranoia", "Shortness of Breath", "Weakness"];
+                            "Paranoia", "Shortness of Breath", "Weakness"];//here
             var a_ion= ["Cretinism", "Fatigue", "Hypothyroidism", "Weight Gain"];
-            var a_iron = ["Anemia", "Brittle nails", "Confusion", "Constipation", "Depression", "Dizziness", "Fatigue", "Headaches", "Inflamed tongue", "Mouth lesions"];
-            var a_mag = ["Anxiety", "Confusion", "Heart attack", "Hyperactivity", "Insomnia", "Nervousness", "Muscular irritability", "Restlessness", "Weakness", "Hypertension"]; 
-            var a_man = ["Atherosclerosis", "Dizziness"," Elevated cholesterol", "Glucose intolerance", "Hearing loss", "Loss of muscle control, Ringing in ears"];
+            var a_iron = ["Anemia", "Brittle nails", "Confusion", "Constipation", "Depression", "Dizziness", "Fatigue", "Headaches", "Inflamed tongue", "Mouth lesions"];//here
+            var a_mag = ["Anxiety", "Confusion", "Heart Attack", "Hyperactivity", "Insomnia", "Nervousness", "Muscular irritability", "Restlessness", "Weakness", "Hypertension"]; 
+            var a_man = ["Atherosclerosis", "Dizziness"," Elevated cholesterol", "Glucose intolerance", "Hearing loss", "Loss of muscle control", "Ringing in ears"];      
             var a_nia = ["Bad breath", "Canker sores", "Confusion", "Depression", "Dermatitis", "Diarrhea", "Emotional Instability", "Fatigue", "Irritability", "Loss of Appetite", "Memory Impairment", 
-                        "Muscle Weakness", "Nausea", "Skin eruptions and Inflammation", "High cholesterol or triglycerides", "Poor circulation"];
+                        "Muscle Weakness", "Nausea", "Skin Eruptions & Inflammation", "High Cholesterol or Triglycerides", "Poor Circulation"];
             var a_acid = ["Abdominal Pains", "Burning Feet", "Depression", "Eczema", "Fatigue", "Hair Loss", "Immune Impairment", "Insomnia", "Irritability", "Low Blood Pressure", "Muscle Spasms", 
                         "Nausea", "Poor Coordination"];
             var a_pot = ["Acne", "Constipation", "Depression", "Edema", "Excessive Water Consumption", "Fatigue", "Glucose Intolerance", "High Cholesterol Levels", "Insomnia", "Mental Impairment", 
@@ -521,8 +528,9 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             var a_vitb12 = ["Anemia", "Constipation", "Depression", "Dizziness", "Fatigue", "Intestinal Disturbances", "Headaches", "Irritability", "Loss of Vibration Sensation", "Low Stomach Acid", "Mental Disturbances", 
                             "Moodiness", "Mouth Lesions", "Numbness", "Spinal Cord Degeneration"];
             var a_vitc = ["Bleeding Gums", "Depression", "Easy Bruising", "Impaired Wound Healing", "Irritability", "Joint Pains", "Loose Teeth", "Malaise", "Tiredness"];
-            var a_coq = ["Ataxia", "Cardiomyopathy", "Cerebellar Atrophy", "Muscle Weakness", "Fatigue", "Seizures", "Kidney Failure", "Encephalopathy", "Learning Disabilities", "Myoglobinuria", "Sensorineural Deafness", "Scoliosis", "Lactic Acidemia", 
-                        "Spasticity", "Hyper-Reflexes", "Weakened Eye muscles", "Atrophying of Muscle Tissue", "Gum Disease"];
+            var a_coq = ["Ataxia", "Cardiomyopathy", "Cerebellar Atrophy", "Muscle Weakness", "Fatigue", "Seizures", "Kidney Failure", "Encephalopathy", "Learning Disabilities", "Myoglobinuria", 
+                        "Sensorineural Deafness", "Scoliosis", "Lactic Acidemia", 
+                        "Spasticity", "Hyper-Reflexes", "Weakened Eye Muscles", "Atrophying of Muscle Tissue", "Gum Disease"];           
             var a_vitd=["Burning Sensation in Mouth", "Diarrhea", "Insomnia", "Myopia", "Nervousness", "Osteomalacia", "Osteoporosis", "Rickets", "Scalp Sweating", "Poor Immunity"];
             var a_vite = ["Gait Disturbances", "Poor Reflexes", "Loss of Position Sense", "Loss of Vibration Sense", "Shortened Red Blood Cell Life"];
             var a_vitk = ["Bleeding Disorders", "Arteriolosclerosis", "Spurs", "Calcium Deposits"];
@@ -570,7 +578,13 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                     if(n < (array_positive.length - 1)){
                           var index1 = s.indexOf(array_positive[n]);
                           var index2 = s.indexOf(array_positive[n+1]);
-                          var temp = s.substring(index1 , index2); 
+                          if(index2 - index1 > 1){
+                            var temp = s.substring(index1 , index2); 
+                            }else{
+                            index2 = s.lastIndexOf(array_positive[n+1]);
+                            var temp = s.substring(index1 , index2); 
+                            }
+                         
                     }else{ //last member of array
                           var index1 = s.indexOf(array_positive[n]);
                           var index2;
@@ -943,7 +957,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                                 c_vitk++;
                             }
                         }
-                        document.getElementById("vitk").value = c_vite;
+                        document.getElementById("vitk").value = c_vitk;
                         if(c_vitk == 1){
                             document.getElementById("p_vitk").value = "Low";
                         }else if(c_vitk == 2){
@@ -1034,7 +1048,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                     b_pos.push(array_b[k].replace(/ /g,''));
                 }
             }
-
+            console.log(b_pos);
             if(b_pos.length > 0){
                 for(x = 0 ; x < b_pos.length ; x++){
 
@@ -1062,7 +1076,8 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                                 c_i++;
                             }
                         } 
-                        document.getElementById("i").value = c_i; 
+                        console.log("here" , c_i);
+                        document.getElementById("u_i").value = c_i; 
                         if(c_i >= 1 & c_i <= 4){
                             document.getElementById("p_i").value = "Low";
                         }else if(c_i >= 5 & c_i <=8){
@@ -1227,7 +1242,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                     }
                 }
             } 
-        }
+        //}
     });
 
 }, function (reason) {
