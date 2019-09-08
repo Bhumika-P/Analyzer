@@ -1,10 +1,22 @@
       
-      // Specify the path to the worker
+//New version jotform not supported with pdf.js. Words changed to match missing letters //Removed fl , fi , ff, ffi
+//Difficulty - Diculty
+//Stuffy - stuy
+//Coffee - coee
+//reflux - reux
+//puffy - puy
+//stiffness - stiness
+//flow - low
+//fibroid - broid
+//flashes - ashes
+// Specify the path to the worker
 function myFunction(){
 
 var PDF_URL = document.getElementById("uploadBox").files[0].path;
+document.getElementById('myform').reset();
 
 PDFJS.workerSrc = 'pdf.worker.js';
+
 
       function getPageText(pageNum, PDFDocumentInstance) {
     // Return a Promise that is solved once the text of the page is retrieven
@@ -30,8 +42,6 @@ PDFJS.workerSrc = 'pdf.worker.js';
 }
 //var  file_name = document.getElementById("uploadBox").value ;
 
-
-
 PDFJS.getDocument(PDF_URL).then(function (pdf) {
 
     var pdfDocument = pdf;
@@ -53,8 +63,10 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
         // e.g ["Text content page 1", "Text content page 2", "Text content page 3" ... ]
         var str = [];
         for(i = 0 ; i<pagesText.length ; i++){
+            //console.log(pagesText[i]);
             str= str.concat(pagesText[i]);
         }
+        //console.log(pagesText);
         var st = str.toString();
         //for(i = 0; i <pagesText.length;i++){
             //var s = pagesText[i];
@@ -64,7 +76,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             var s1_p9 = ["(i)", "(j)", "(k)", "(l)"];
             var all = ["Biotin" , "Calcium" , "Chromium" , "Copper", "EssentialFattyAcids",
                         "Protein", "Carbohydrates", "FolicAcid", "Iodine" , "Iron" , "Magnesium","Manganese",
-                        "Niacin", "PantothenicAcid(B6)" ,"Potassium", "Pyridoxine(B6)", "Riboflavin",
+                        "Niacin", "PantothenicAcid(B6)" ,"Potassium", "Pyridoxine(B6)", "Riboavin",
                         "Selenium","Thiamin", "VitaminA", "VitaminB-12",  "VitaminC", "CoQ10",
                         "VitaminD","VitaminE", "VitaminK","Zinc"] ;
             array_b = ["I." , "II." , "III." , "IV.","V.","VI.","VII.","VIII","IX","X.","XI.","XII."];
@@ -75,15 +87,14 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                 }
             }
             //console.log(i);
-            console.log(p_info);
+            //console.log(p_info); // things that are filled in the form
             
             if(p_info.length > 0){
                 for(j = 0 ; j < p_info.length;j++){
                     if(j < p_info.length - 1){
                         var index1 = st.indexOf(p_info[j]);
                         var index2 = st.indexOf(p_info[j+1]);
-                        var temp = st.substring(index1 , index2); 
-                        
+                        var temp = st.substring(index1 , index2);                        
                     }else{ //last member of array
                         var index1 = st.indexOf(p_info[j]);
                         var index2;
@@ -113,8 +124,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                         }
                         if(index2 < 0){
                           for( j1 = 0 ; j1 <array_b.length ; j1++){
-                              index2 = st.indexOf(array_b[j1]);
-                            
+                              index2 = st.indexOf(array_b[j1]); 
                               if(index2 >= 0){
                                   break;
                               }
@@ -122,7 +132,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                         }
 
                         if(index2 < 0){
-                            index2 =  pagesText[i].length;
+                            index2 =  pagesText.length;
                         }
 
                         var temp = st.substring(index1, index2);
@@ -157,14 +167,14 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                 
             }
             // Section I 
-            var s = st.toString().replace(/ /g,'');
+            var s = st.toString().replace(/ /g,'').replace(/[^ -~]+/g, "");
             
             var array_p1= ["Fear" , "Anger" , "Bitterness" , "Grief", "Gossip", "Helplessness", "Hopelessness",
                             "Guilt", "Betrayal", "Envy" , "Jealousy","Insecurity","Impatient","Arrogance",
                             "Pride", "Hatred", "Rage", "Resentment", "Revenge", "Shame", "Sorrow", "Regret",
                             "Passivity", "Slander", "Possessiveness", "Rebellion", " Unforgiveness", "Gambling",
                             "Addictions" , "Other"];
-            var array_p2 = ["Always Indoors", " Do not regularly change home air filter", "Home has mold", "Home has an air ionizer",
+            var array_p2 = ["Always Indoors", " Do not regularly change home air lter", "Home has mold", "Home has an air ionizer",
                             "Have plenty of green plants in my living space", "Practice deep breathing exercises regularly, especially outdoors",
                             " I live away from city smog", " Dizziness", "Headaches", " WateryEyes", "Sneezing", "Cough Regularly",
                             "Fatigue", "Smoke cigarettes regulary"];
@@ -177,27 +187,27 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                             "Burning sensation", "Rash", "Vision problems", "Chest pains" , "Swollen lymph nodes", "Live near electrical towers",
                             "Teeth & jaw pain", "Constantly having cellphone to the ears","On computer more than six hours","Aching muscles",
                             "Fatigue","Bouts of unexplained fear or anxiety", "Tingling or prickly sensation across face or other parts of body",
-                            "Feeling of impeding influenza but never quite breaks out"];
+                            "Feeling of impeding inuenza but never quite breaks out"];
             var array_p6 = ["Exercise regularly at least twice a week", "Fatigue","Weight gain", "Weakness", "Muscle atrophy",
-                            "Depression", "Lack of flexibility and good balance",  "Heart problems" ];
+                            "Depression", "Lack of exibility and good balance",  "Heart problems" ];
             var array_p7 = ["Painful or hard bowel movements", "Constipated, less than 1 bowel movement a day", "Varicose veins",
-                            "Hemorrhoids or rectal fissures", "Use lots of toilet paper to clean yourself",
+                            "Hemorrhoids or rectal ssures", "Use lots of toilet paper to clean yourself",
                             "Stools are pencil size and drop to the bottom of the toilet"  ];
             var array_p8 =["Consume six types of vegetables daily", "Eat at least two types of fruit daily", "Consume at least an ounce of raw nuts daily",
                             "50% of my diet is made up of raw foods", "I do not consume dairy, wheat or gluten containing foods",
                             "I consume very little dairy or gluten (2 to 3 meals a week)", "Eat fresh and/or organic foods as much as possible",
-                            "Vegetarian", "Vegan", "Eat white fish two to three times a week" ];
-            var array_p9a = ["Allergies" , "Chronic Headaches/migraines" , "Chronic skin problems",  "Digestive problems",  "Diabetes" , "Autoimmune disease",  "Difficulty sleeping",  
-                            "Depression/poor mood" , "Low energy" , "Liver dysfunction" , "Overweight" , "Sore muscles or stiff joints" , "Unhealthy cravings" , "Chemical sensitivities/Environmental illness",  
+                            "Vegetarian", "Vegan", "Eat white sh two to three times a week" ];
+            var array_p9a = ["Allergies" , "Chronic Headaches/migraines" , "Chronic skin problems",  "Digestive problems",  "Diabetes" , "Autoimmune disease",  "Diculty sleeping",  
+                            "Depression/poor mood" , "Low energy" , "Liver dysfunction" , "Overweight" , "Sore muscles or sti joints" , "Unhealthy cravings" , "Chemical sensitivities/Environmental illness",  
                             "Sleepy after meals" , "Food Allergies"];
             var array_p9b = ["High Blood Pressure",  "Numbness and tingling in extremity" , "Twitching of face and other muscles",  "Tremors or shakes of hands, feet, head, etc.",  "Jumpy, jittery, nervous",  
                             "Unexplained chest pains",  "Heartbeat over 100 per minute" , "Unexplained rashes or skin irritations",  "Excessive itching",  "Bloated feeling most of the time",  "Frequent or re-occurring heartburn",  
                             "Constipated on regular basis" , "Frequent diarrhea" , "Depression" , "Unexplained irritability" , "Sudden, unexplained or unsolicited anger",  "Constant death wish or suicidal intent",  
-                            "Difficulty in making simple decisions" , "Cold hands or feet, even in warm or moderate weather" , "Out of breath easily" , "Headaches after eating" , "Frequent leg cramps",  
+                            "Diculty in making simple decisions" , "Cold hands or feet, even in warm or moderate weather" , "Out of breath easily" , "Headaches after eating" , "Frequent leg cramps",  
                             "Frequent metallic taste in mouth" , "Burning sensation on the tongue" , "Constant or frequent ringing in the ears" , "Frequent urination during the night" , "Unexplained chronic fatigue" , 
-                            "Poor or failing memory" , "Constant or frequent pain in joins" , "Frequent insomnia ", "Unexplained fluid retention"];
+                            "Poor or failing memory" , "Constant or frequent pain in joins" , "Frequent insomnia ", "Unexplained uid retention"];
             var array_p10 = ["Gas" , "Bloating" , "Abdominal fullness" , "Nausea" , "Constipation" , "Diarrhea" , "Abdominal cramps or pain" , "Fatigue" , "Hives" , "Allergies, especially foods" , "History of parasitic infections" , 
-                            "History of traveler's diarrhea" , "Difficulty overcoming intestinal yeast growth"];
+                            "History of traveler's diarrhea" , "Diculty overcoming intestinal yeast growth"];
             var array_p11 = ["Gas" , "Bloating" , "Constipation and/or diarrhea" , "Spastic/irritable colon" , "Chron's Disease, Colitis" , "Intestinal cramping" , "Heart Burn" , "Itchy anus" , 
                             "Continuous sinus problems" , "Chronic or re-occurring sore throat, colds, bronchitis, ear infection",  "Premenstrual symptoms" , "Menstrual cramps and problems" , "Fatigue" ,
                             "Depression" , "Irritability or chronic vaginal yeast infections" , "Infertility" , "Chronic rashes",  "Recurrent bladder infections or irritation" , "Recurrent staph infections" ,
@@ -262,7 +272,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                         }
 
                         if(index2 < 0){
-                            index2 =  pagesText[i].length;
+                            index2 =  pagesText.length;
                         }
 
                         var temp = s.substring(index1, index2);
@@ -421,7 +431,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                           }
 
                           if(index2 < 0){
-                            index2 =  pagesText[i].length;
+                            index2 =  pagesText.length;
                           }
                           var temp = s.substring(index1, index2);
                          
@@ -491,36 +501,36 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             }
 
             //Array of all the sympots
-            var a_biotin =["Dermatitis", "Eye inflammation", "Hair loss", "Loss of muscle control", "Insomnia", "Muscle weakness"];
+            var a_biotin =["Dermatitis", "Eye inammation", "Hair loss", "Loss of muscle control", "Insomnia", "Muscle weakness"];
             var a_cal = ["Brittle nails", "Cramps", "Delusions", "Depression", "Insomnia", "Irritability", 
                         "Osteoporosis", "Palpitations", "Periodontal disease", "Rickets", "Tooth decay"];
             var a_chrom = ["Anxiety", "Fatigue", "Glucose intolerance", "Adult-onset diabetes"];
             var a_copper = ["Anemia", "Arterial Damage", "Depression", "Diarrhea", "Fatigue", "Fragile Bones", "Hair Loss", "Hyperthyroidism", "Weakness"];
             var a_fatty = ["Diarrhea", "Dry Skin & Hair Loss","Hair Loss", "Immune Impairment", "Infertility", 
                             "Poor Wound Healing", "Premenstrual Syndrome", "Acne", "Eczema", "Gall Stones", "Liver Degeneration", 
-                            "Headaches when out in the hot sun", "Sunburn easily or suffer sun poisening"];
+                            "Headaches when out in the hot sun", "Sunburn easily or suer sun poisening"];
             var a_protein = ["Increased secretion from mouth/nose/eyes.", "Swelling in hands and feet", "Muscle cramps", 
                             "Menstrual cramps", "Low Exercise Tolerance", "Cold hands and feet", "Bleeding Gums", "Low Immunity", 
-                            "Fatigue", "Muscles more flabby than normal", "Hair loss", "Splitting hair and nails", "Low Heart Rate", "Hypoglycemia"];
+                            "Fatigue", "Muscles more abby than normal", "Hair loss", "Splitting hair and nails", "Low Heart Rate", "Hypoglycemia"];
             var a_carbs = [	"Decreased secretions from mouth/nose/eyes", "Muscle weakness", "Inability to concentrate", 
-                            "Easily startled", "Difficulty swallowing", "Voice affected by stress"];
+                            "Easily startled", "Diculty swallowing", "Voice aected by stress"];
             var a_folic = ["Anemia", "Apathy", "Diarrhea", "Fatigue", "Headaches", "Insomnia", "Loss of Appetite", "Neural Tube Defects in Fetus", 
                             "Paranoia", "Shortness of Breath", "Weakness"];//here
             var a_ion= ["Cretinism", "Fatigue", "Hypothyroidism", "Weight Gain"];
-            var a_iron = ["Anemia", "Brittle nails", "Confusion", "Constipation", "Depression", "Dizziness", "Fatigue", "Headaches", "Inflamed tongue", "Mouth lesions"];//here
+            var a_iron = ["Anemia", "Brittle nails", "Confusion", "Constipation", "Depression", "Dizziness", "Fatigue", "Headaches", "Inamed tongue", "Mouth lesions"];//here
             var a_mag = ["Anxiety", "Confusion", "Heart Attack", "Hyperactivity", "Insomnia", "Nervousness", "Muscular irritability", "Restlessness", "Weakness", "Hypertension"]; 
             var a_man = ["Atherosclerosis", "Dizziness"," Elevated cholesterol", "Glucose intolerance", "Hearing loss", "Loss of muscle control", "Ringing in ears"];      
             var a_nia = ["Bad breath", "Canker sores", "Confusion", "Depression", "Dermatitis", "Diarrhea", "Emotional Instability", "Fatigue", "Irritability", "Loss of Appetite", "Memory Impairment", 
-                        "Muscle Weakness", "Nausea", "Skin Eruptions & Inflammation", "High Cholesterol or Triglycerides", "Poor Circulation"];
+                        "Muscle Weakness", "Nausea", "Skin Eruptions & Inammation", "High Cholesterol or Triglycerides", "Poor Circulation"];
             var a_acid = ["Abdominal Pains", "Burning Feet", "Depression", "Eczema", "Fatigue", "Hair Loss", "Immune Impairment", "Insomnia", "Irritability", "Low Blood Pressure", "Muscle Spasms", 
                         "Nausea", "Poor Coordination"];
             var a_pot = ["Acne", "Constipation", "Depression", "Edema", "Excessive Water Consumption", "Fatigue", "Glucose Intolerance", "High Cholesterol Levels", "Insomnia", "Mental Impairment", 
-                        "Muscle Weakness", "Nervousness", "Poor Reflexes"];
-            var a_pyr = ["Acne", "Anemia", "Arthritis", "Eye Inflammation", "Depression", "Dizziness", "Facial Oiliness", "Fatigue", "Impaired Wound Healing", "Irritability", "Loss of Appetite", 
+                        "Muscle Weakness", "Nervousness", "Poor Reexes"];
+            var a_pyr = ["Acne", "Anemia", "Arthritis", "Eye Inammation", "Depression", "Dizziness", "Facial Oiliness", "Fatigue", "Impaired Wound Healing", "Irritability", "Loss of Appetite", 
                         "Loss of Hair", "Mouth Lesions", "Nausea"];
-            var a_ribo = ["Blurred Vision", "Cataracts", "Depression", "Dermatitis", "Dizziness", "Hair Loss", "Inflamed Eyes","Mouth Lesions", "Nervousness", 
+            var a_ribo = ["Blurred Vision", "Cataracts", "Depression", "Dermatitis", "Dizziness", "Hair Loss", "Inamed Eyes","Mouth Lesions", "Nervousness", 
                          "Neurological Symptoms (Numbness/Loss Of Sensation/\"Electic Shock\" Sensations)", "Seizures", "Sensitivity to Light", "Sleepiness", "Weakness"];
-            var a_sel = ["Growth Impairment", "High Cholesterol Levels", "Increased Incidence of Cancer", "Pancreatic Insufficiency (Inability to secrete adequate amounts of digestive enzymes)", 
+            var a_sel = ["Growth Impairment", "High Cholesterol Levels", "Increased Incidence of Cancer", "Pancreatic Insuciency (Inability to secrete adequate amounts of digestive enzymes)", 
                         "Immune Impairment", "Liver Impairment", "Male Sterility"];
             var a_thia = ["Confusion", "Constipated", "Digestive Problems", "Irritability", "Loss of Appetite", "Memory Loss", "Nervousness", "Numbness of Hands & Feet", "Pain Sensitivity", 
                         "Poor Coordination", "Weakness", "Slow Heart Beat or Rapid Heartbeat", "Enlarged Heart", "Heart Palpitations"];
@@ -530,9 +540,9 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             var a_vitc = ["Bleeding Gums", "Depression", "Easy Bruising", "Impaired Wound Healing", "Irritability", "Joint Pains", "Loose Teeth", "Malaise", "Tiredness"];
             var a_coq = ["Ataxia", "Cardiomyopathy", "Cerebellar Atrophy", "Muscle Weakness", "Fatigue", "Seizures", "Kidney Failure", "Encephalopathy", "Learning Disabilities", "Myoglobinuria", 
                         "Sensorineural Deafness", "Scoliosis", "Lactic Acidemia", 
-                        "Spasticity", "Hyper-Reflexes", "Weakened Eye Muscles", "Atrophying of Muscle Tissue", "Gum Disease"];           
+                        "Spasticity", "Hyper-Reexes", "Weakened Eye Muscles", "Atrophying of Muscle Tissue", "Gum Disease"];           
             var a_vitd=["Burning Sensation in Mouth", "Diarrhea", "Insomnia", "Myopia", "Nervousness", "Osteomalacia", "Osteoporosis", "Rickets", "Scalp Sweating", "Poor Immunity"];
-            var a_vite = ["Gait Disturbances", "Poor Reflexes", "Loss of Position Sense", "Loss of Vibration Sense", "Shortened Red Blood Cell Life"];
+            var a_vite = ["Gait Disturbances", "Poor Reexes", "Loss of Position Sense", "Loss of Vibration Sense", "Shortened Red Blood Cell Life"];
             var a_vitk = ["Bleeding Disorders", "Arteriolosclerosis", "Spurs", "Calcium Deposits"];
             var a_zinc = ["Acne", "Amnesia", "Apathy", "Brittle Nails", "Delayed Sexual Maturity", "Depression", "Diarrhea", "Eczema", "Fatigue","Growth Impairment", "Hair Loss", "High Cholesterol Levels", "Immune Impairment", "Impotence", "Irritability", "Lethargy", 
                          "Loss of Appetite", "Loss of Sense of Taste", "Low Stomach Acid", "Male Infertility", "Memory Impairment", "Night Blindness", "Paranoia", "White Spots on Nails", "Wound Healing Impairment", "Low Testosterone"];
@@ -596,7 +606,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                               }
                             }
                         if(index2 < 0){
-                            index2 =  pagesText[i].length;
+                            index2 =  pagesText.length;
                         }
                         var temp = s.substring(index1, index2);
                     }
@@ -825,7 +835,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                         }else{
                             document.getElementById("p_b6").value = "High";
                         } 
-                    }else if(array_positive[n].localeCompare("Riboflavin") == 0){
+                    }else if(array_positive[n].localeCompare("Riboavin") == 0){
                         for(j=0; j< a_ribo.length; j++){
                             if(temp.indexOf(a_ribo[j].replace(/ /g,'')) >= 0){
                                 c_ribo++;
@@ -984,7 +994,7 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                 }
            }
 
-            a_i = ["Belching or gas within one hour after eating" , "Heartburn or acid reflux", "Bad breath", "Bloated within one hour after eating", "Loss of taste for meat",
+            a_i = ["Belching or gas within one hour after eating" , "Heartburn or acid reux", "Bad breath", "Bloated within one hour after eating", "Loss of taste for meat",//acid reflux
                    "Sweat has strong odor", "Stomach upset by taking vitamins", "Feel like skipping breakfast", "Sleepy after meals", "Feel better if you do not eat", 
                    "Fingernails chip, peel or break easily" ,  "Anemia unresponsive to iron", "Stomach pains or cramps", "Chronic Diarrhea", "Diarrhea shortly after meals",
                     "Black or tarry colored tools","Undigested food in stool"];
@@ -992,41 +1002,41 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                     "Sensitive to Nutrasweet (aspartame)","Stomach upset by greasy foods", "Light or clay colored stools", "Become sick if you drink wine", " History of drug or alcohol abuse",
                      "Pain under right side of rib cage", "Greasy or shinny stools",  "Dry skin, itchy feet or skin peels on feet", "Easily intoxicated if you drink wine"," History of Hepatitis",
                       "Hemorrhoids or varicose veins", "Nausea", "Headache over eyes" , "Easily hung over if you drink wine", "Long term use of prescription or recreational drugs",
-                      "Chronic fatigue or fibromyalgia", "Sea, car, airplane or motion sickness", "Gallbladder attack or removed", 
+                      "Chronic fatigue or bromyalgia", "Sea, car, airplane or motion sickness", "Gallbladder attack or removed", //Chronic fatigue or fibromyalgia
                      "How much alcohol do you drink per week?", "Sensitive to chemicals","Nutrasweet consumption" ];
-            a_iii = ["Food Allergies" ,"Abdominal bloating 1 to 2 hours after eating" , "Pulse speeds after eating", "Specific foods make you tired or burdened" ,"Airborne allergies" ,
-                    "Experience hives" ,"Sinus congestion" , "Crave bread or noodles",  "Alternating constipation and diarrhea",  "Crohn’s disease" , "Wheat or grain sensitivity" , 
-                    "Asthma, sinus infections, stuffy nose" , "Dairy sensitivity",  "Bizarre, vivid dreams, nightmares" , "Feel spacy or unreal" , "Use over the counter pain medications"];
+            a_iii = ["Food Allergies" ,"Abdominal bloating 1 to 2 hours after eating" , "Pulse speeds after eating", "Specic foods make you tired or burdened" ,"Airborne allergies" ,//specific 
+                    "Experience hives" ,"Sinus congestion" , "Crave bread or noodles",  "Alternating constipation and diarrhea",  "Crohns disease" , "Wheat or grain sensitivity" ,  //crohn's
+                    "Asthma, sinus infections, stuy nose" , "Dairy sensitivity",  "Bizarre, vivid dreams, nightmares" , "Feel spacy or unreal" , "Use over the counter pain medications"];//stuffy
             a_iv = ["Anus itches",  "Coated tongue",  "Feel worse in moldy or dusty places", "Have taken antibiotics for long periods (2 to 3 months or more)",  "Fungus or yeast infection",
                    "Ringworm/Nail fungus",  "Blood in stool" ," Mucous in stool" , "Painful to press on outer side of thighs" , "Cramping in lower abdominal region" , "Dark circles under eyes",
                     "Excessive foul smelling lower bowel gas",  "Irritable bowel or mucous colitis",  "Strong body odors",  "Less than 1 bowel movement daily"];
-            a_v = ["Awaken a few hours after falling asleep, hard to get back to sleep",  "Crave Sweets",  "Bing or uncontrolled eating",  "Excessive appetite",  "Crave coffee or sugar in afternoon"
+            a_v = ["Awaken a few hours after falling asleep, hard to get back to sleep",  "Crave Sweets",  "Bing or uncontrolled eating",  "Excessive appetite",  "Crave coee or sugar in afternoon" //coffee
                   , "Sleepy in the afternoon",  "Fatigue that is relieved by eating", "Headaches if meals are skipped",  "Irritable before meals",  "Shaky if meals are delayed",
                   "Family members with diabetes",  "Frequent thirst",  "Frequent Urination"];
-            a_vi = ["Tend to be a night person",  "Difficulty falling asleep",  "Slow starter in the morning",  "Keyed up, trouble calming down", "Blood pressure above 120/80",
-                    "A headache after exercising",  "Feeling wired or jittery after drinking coffee",  "Clench or grind teeth" ,"Calm on the outside, trouble on the inside",
-                    "Chronic low back pain, worse with fatigue",  "Become dizzy when standing up suddenly",  "Difficulty maintaining manipulative correction" ,
+            a_vi = ["Tend to be a night person",  "Diculty falling asleep",  "Slow starter in the morning",  "Keyed up, trouble calming down", "Blood pressure above 120/80", //difficulty
+                    "A headache after exercising",  "Feeling wired or jittery after drinking coee",  "Clench or grind teeth" ,"Calm on the outside, trouble on the inside", //coffee
+                    "Chronic low back pain, worse with fatigue",  "Become dizzy when standing up suddenly",  "Diculty maintaining manipulative correction" ,
                     "Pain after manipulative correction",  "Arthritic tendencies",  "Crave salty foods",  "Salt foods before tasting",  "Perspire easily",  
-                    "Chronic fatigue or get drowsy often",  "Afternoon yawning",  "After headaches",  "Asthma, wheezing or difficulty breathing",  "Pain on the medial or inner side of the knee" ,
+                    "Chronic fatigue or get drowsy often",  "Afternoon yawning",  "After headaches",  "Asthma, wheezing or diculty breathing",  "Pain on the medial or inner side of the knee" ,
                      "Tendency to sprain ankles or shin splints" , "Tendency to need sunglasses",  "Allergies and/or hives", "Weakness, dizziness"];
-            a_vii = ["Sensitive/allergic to iodine",  "Difficulty gaining weight, even with large appetite",  "Nervous, emotional, can’t work under pressure",  "Inward trembling",  "Flush easily" ,
-                    "Fast pulse at rest" , "Intolerant of high temperatures",  "Difficulty losing weight" , "Mentally sluggish, reduced initiative",  "Easily fatigued, sleepy during the day" ,
-                     "Sensitive to cold, poor circulation (cold hands and feet)",  "Chronic constipation",  "Excessive hair loss and/or coarse hair",  "Morning headaches, wear off during the day",
+            a_vii = ["Sensitive/allergic to iodine",  "Diculty gaining weight, even with large appetite",  "Nervous, emotional, cant work under pressure",  "Inward trembling",  "Flush easily" ,
+                    "Fast pulse at rest" , "Intolerant of high temperatures",  "Diculty losing weight" , "Mentally sluggish, reduced initiative",  "Easily fatigued, sleepy during the day" ,
+                     "Sensitive to cold, poor circulation (cold hands and feet)",  "Chronic constipation",  "Excessive hair loss and/or coarse hair",  "Morning headaches, wear o during the day",
                     "Seasonal sadness",  "Loss of lateral 1/3 of eyebrow"];
-            a_viii = ["Prostate problems",  "Difficulty with urination or dribbling",  "Difficult to start or stop urine stream" , "Pain or burning during urination",  "Waking to urinate at night", 
+            a_viii = ["Prostate problems",  "Diculty with urination or dribbling",  "Dicult to start or stop urine stream" , "Pain or burning during urination",  "Waking to urinate at night", 
                     "Interruption of stream during urination",  "Pain on inside of legs or heels",  "Feeling of incomplete bowel evacuation",  "Decreased sexual function"];
-            a_ix = ["Depression during periods",  "Mood swings associated with periods (PMS)" ,"Crave chocolate around period",  "Breast tenderness associated with cycle" ,"Excessive menstrual flow",
-                    "Scanty blood flow during periods",  "Occasional skipped periods",  "Variations in menstrual cycle",  "Endometriosis",  "Uterine fibroids",  "Breast fibroids, benign masses",  
+            a_ix = ["Depression during periods",  "Mood swings associated with periods (PMS)" ,"Crave chocolate around period",  "Breast tenderness associated with cycle" ,"Excessive menstrual ow",
+                    "Scanty blood ow during periods",  "Occasional skipped periods",  "Variations in menstrual cycle",  "Endometriosis",  "Uterine broids",  "Breast broids, benign masses",  
                     "Painful intercourse",  "Vaginal discharge",  "Vaginal itchiness",  "Vaginal dryness",  "Weight gain around hips, thighs, and buttocks",  "Excessive facial or body hair",  
-                    "Thinning skin", "Hotflashes",  "Night sweats (in menopausal women)"];
+                    "Thinning skin", "Hotashes",  "Night sweats (in menopausal women)"];
             a_x = ["Aware of heavy or irregular breathing",  "Discomfort at high altitudes" , "Air hunger or sigh frequently",  "Compelled to open windows in a closed room",  "Shortness of breath with moderate exertion", 
                    "Ankles swell, especially at end of day",  "Cough at night", "Blush or face turns red for no reason",  "Muscle cramps with exertion",  "Cold hands and feet , even in the warm season",
                     "Dull pain or tightness in chest and/or radiate into right arm, worse with exertion",  "Numbness in certain parts of the body",  "Dry skin despite regular consumption of water",  "Frequent dizziness",  
                     "Memory loss",  "Lack of energy or frequent exhaustion" , "Skin discoloration blemishes, or spots",  "Weakened immune system",  "Unexplained digestive problems", "Low libido (sex drive)",  
-                    "Decreased cognitive ability",  "Brittle hair and nails",  "Hair loss",  "Headaches", "Dark circles under eyes",  "Problems with sleep",  "Chronic pain or muscular and joint stiffness",  
+                    "Decreased cognitive ability",  "Brittle hair and nails",  "Hair loss",  "Headaches", "Dark circles under eyes",  "Problems with sleep",  "Chronic pain or muscular and joint stiness",  
                     "Problems with leg ulcers or bed sores",  "Varicose veins"];
-            a_xi = ["Pain in mid-back region",  "Puffy around the eyes, dark circles under eyes" , "History of kidney stones",  "Cloudy, bloody or darkened urine",  "Urine has a strong odor"];
-            a_xii = ["Runny or drippy nose",  "Catch colds at the beginning of winter",  "Adult acne" , "Itchy skin",  "Cysts, boils, rashes",  "History of Epstein Bar",  "Frequent colds or flu",
+            a_xi = ["Pain in mid-back region",  "Puy around the eyes, dark circles under eyes" , "History of kidney stones",  "Cloudy, bloody or darkened urine",  "Urine has a strong odor"];
+            a_xii = ["Runny or drippy nose",  "Catch colds at the beginning of winter",  "Adult acne" , "Itchy skin",  "Cysts, boils, rashes",  "History of Epstein Bar",  "Frequent colds or u",
                       "Frequent infections",  "Mucous-producing cough",  "History of Mono, Herpes",  "History of Shingles, Chronic fatigue, Hepatitis or other chronic viral condition"];
             b_pos = [];
 
@@ -1045,10 +1055,47 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
 
             for(k=0;k<array_b.length;k++){
                 if(s.indexOf(array_b[k]) >= 0){
-                    b_pos.push(array_b[k].replace(/ /g,''));
+                    var first = s.indexOf(array_b[k]); //first occurence
+                    if(array_b[k] == "V."){
+                        first = s.lastIndexOf(array_b[k]); 
+                    }
+                    var previous = first-1;
+                    var seconddot = first + 1;
+                    var thirddot = first+2;
+                    var fourthdot= first+3;/*
+                    console.log("================================");
+                    console.log("previous :",  s.charAt(previous) , previous);
+                    console.log("firstchar :",  s.charAt(first), first);
+                    console.log("seconddot ",  s.charAt(seconddot) , seconddot);
+                    console.log("thirddot :",  s.charAt(thirddot));
+                    console.log("fourthdot :",  s.charAt(fourthdot));*/
+                    
+                    if(array_b[k] == "I." && s.charAt(seconddot) == "." && s.charAt(previous) != "I"){
+                            b_pos.push(array_b[k].replace(/ /g,''));
+                    }else if(array_b[k] == "II." && s.charAt(thirddot) == "." && s.charAt(previous) != "I"){
+                            b_pos.push(array_b[k].replace(/ /g,''));
+                    }else if(array_b[k] == "III." && s.charAt(fourthdot) == "."){
+                            b_pos.push(array_b[k].replace(/ /g,''));
+                    }else if(array_b[k] == "IV." && s.charAt(thirddot) == "."){
+                            b_pos.push(array_b[k].replace(/ /g,''));
+                    }else if(array_b[k] == "V." &&s.charAt(seconddot) == "." && s.charAt(previous) != "I"){
+                        b_pos.push(array_b[k].replace(/ /g,''));
+                    }else if(array_b[k] == "VI." && s.charAt(thirddot) == "."){
+                        b_pos.push(array_b[k].replace(/ /g,''));
+                    }else if(array_b[k] == "VII." && s.charAt(fourthdot)== "."){
+                        b_pos.push(array_b[k].replace(/ /g,''));
+                    }else if(array_b[k] == "X." && s.charAt(seconddot) == "."){
+                        b_pos.push(array_b[k].replace(/ /g,''));
+                    }else if(array_b[k] == "XI." && s.charAt(thirddot) == "."){
+                        b_pos.push(array_b[k].replace(/ /g,''));
+                    }else if(array_b[k] == "XII." && s.charAt(fourthdot) == "."){
+                        b_pos.push(array_b[k].replace(/ /g,''));
+                    }else if(array_b[k] == "VIII" || array_b[k] == "IX"){
+                        b_pos.push(array_b[k].replace(/ /g,''));
+                    }
                 }
             }
-            console.log(b_pos);
+            //console.log(b_pos);
             if(b_pos.length > 0){
                 for(x = 0 ; x < b_pos.length ; x++){
 
@@ -1056,18 +1103,18 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                         var index1 = s.indexOf(b_pos[x]);
                         var index2 = s.indexOf(b_pos[x+1]);
                         if(index2 - index1 > 1){
-                            var temp = s.substring(index1 , index2); 
+                            var temp = s.substring(index1 , index2);    
                         }else{
                             index2 = s.lastIndexOf(b_pos[x+1]);
-                            var temp = s.substring(index1 , index2); 
+                            var temp = s.substring(index1 , index2);  
                         }
                     }else{ //last member of array
                         var index1 = s.indexOf(b_pos[x]);
                         var index2 = s.indexOf("List"); 
                         if(index2 <0){
-                          var temp = s.substring(index1 , pagesText[i].length);
+                          var temp = s.substring(index1 , s.length);    
                         }else{
-                          var temp = s.substring(index1 , index2);
+                          var temp = s.substring(index1 , index2);    
                         }
                     }
                     if(b_pos[x].localeCompare("I.") == 0){
@@ -1076,7 +1123,6 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
                                 c_i++;
                             }
                         } 
-                        console.log("here" , c_i);
                         document.getElementById("u_i").value = c_i; 
                         if(c_i >= 1 & c_i <= 4){
                             document.getElementById("p_i").value = "Low";
@@ -1244,11 +1290,9 @@ PDFJS.getDocument(PDF_URL).then(function (pdf) {
             } 
         //}
     });
-
 }, function (reason) {
     // PDF loading error
     console.log("Error loading pdf");
-    console.error(reason);
-    
+    console.error(reason);    
 });
 }
