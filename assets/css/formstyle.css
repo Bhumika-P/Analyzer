@@ -1,0 +1,97 @@
+h3, h1 {
+    text-align: center;
+    font-family: 'Abril Fatface', cursive;
+}
+
+.form-row, .form-control, label {
+    margin-left: 50%;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    border-collapse: collapse;
+}
+
+tr, td, thead, tbody {
+    width: 20%;
+    align: center
+}
+
+input[type=textbox] {
+    width: 100%;
+}
+
+#uploadBox, #button_a, #button_print {
+    margin-left: 45%;
+    margin-right: 45%;
+}
+
+#button_a, #button_print, #print-pdf {
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: rgb(27, 87, 2);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 1px #999;
+    padding: 9px 20px;
+}
+
+#button_print {
+    margin-bottom: 1%;
+}
+
+thead {
+    background-color: rgb(27, 87, 2);
+    color: white;
+}
+
+thead, td {
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+input[type=textbox] {
+    background: transparent;
+    border-top: transparent !important;
+    border-left: transparent !important;
+    border-right: transparent !important;
+    border-bottom: transparent !important;
+}
+
+form {
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+    width: 80%;
+    height: auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: white;
+    padding-top: 4%;
+    padding-bottom: 4%
+}
+
+#me {
+    color: #f2f2f2;
+}
